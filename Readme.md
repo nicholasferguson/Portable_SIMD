@@ -47,4 +47,4 @@ https://github.com/VcDevel/Vc
 - SSE4.2
 - AVX
 - AVX2
-- AVX512 ( Xeon Phi ) (Many Integrated Core (MIC) )
+- AVX512 ( Xeon Phi ) (Many Integrated Core (MIC) )  
