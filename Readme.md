@@ -3,15 +3,17 @@
 	+ Built all code under Windows 10, with Visual Studio 2015, x64
 	
 	+ This project is to test a SIMD type API, based on VecCore/VecGeom, that could allow switching SIMD wrappers, such as UMESIMD or VC. In this test, I reorganized code.
+	+ VecGeom developed VecCore as an SIMD type API to be able to switch an app from using UMESIMD to using VC.  
 	
 	Questions to answer
-	+ With metaprogramming, can an application switch to a particular SIMD backend, without any recoding, 
-	+ Can only one backend + SIMD selection can be configured at compile time:  Example UMSIMD + AVX2  or VC + AVX2
+	+ With metaprogramming, can an application switch to a particular SIMD wrapper, with minimal re-coding, 
 
 	Issues
-	+ backend.cc from VecCore is broken in its metaprogrammnig.  It resorts to copying into simd containers, using pointers. ( And though it works with VC, it is broken with UMESIMD)
-	+ quadratic.cc is a better test.  But some _aligned_free of containers generate errors.  Need to review why.
-	+ statistics from quadratic.cc are off... in order to compute a mean and sigma, too many time intervals are measured.  This impacts performance.
+	+ VecCore's test code in backend.cc  is broken in its metaprogrammnig.  It resorts to copying into simd containers, using pointers. ( And though it works with VC, it is broken with UMESIMD).
+	
+	+ VecCore's test code in quadratic.cc is a better test.  But some _aligned_free of containers generate errors.  Need to review why.
+	+ statistics from quadratic.cc are off... in order to compute a mean and sigma, too many time intervals are measured.  This impacts reported performance.
+
 	+ To run test with VC
 	+ 	build backend_t with Preprocessor Macro: VECCORE_ENABLE_VC
 	+ 	All tests were OK.
@@ -21,11 +23,6 @@
 		Working on a resolution.
 	
 =====================================================
-	
-This project extracted code from Cern's VecGEOM and Cern's umesimd, and VcDevel's VC
-
-- Essentially it uses backend interfaces of VecGEOM/VecCore for various SIMD related code groups.
-- And currently includes code groups:  umesimd and Vc
 
 VecGeom/VecCore
 https://gitlab.cern.ch/VecGeom
