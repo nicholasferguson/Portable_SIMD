@@ -36,7 +36,7 @@ https://github.com/edanor/umesimd
 - SSE2
 - AVX
 - AVX2
-- AVX512
+- AVX512 ( Xeon Phi )
 
 Vc has interfaces for ( Thanks to VC team)
 https://github.com/VcDevel/Vc
@@ -47,3 +47,4 @@ https://github.com/VcDevel/Vc
 - SSE4.2
 - AVX
 - AVX2
+- AVX512 ( Xeon Phi ) (Many Integrated Core (MIC) )
