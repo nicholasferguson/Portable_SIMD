@@ -21,11 +21,10 @@
 	
 =====================================================
 	
-This project extracted code from Cern's VecGEOM and Cern's umesimd.
+This project extracted code from Cern's VecGEOM and Cern's umesimd, and VcDevel's VC
 
-- Essentially it uses backend interfaces of VecGEOM for various SIMD related code groups.
-- It also extracts a backend tester from VecGEOM.  
-- And currently includes code for umesimd and Vc
+- Essentially it uses backend interfaces of VecGEOM/VecCore for various SIMD related code groups.
+- And currently includes code groups:  umesimd and Vc
 
 VecGeom/VecCore
 https://gitlab.cern.ch/VecGeom
