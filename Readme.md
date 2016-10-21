@@ -2,17 +2,21 @@
 2016.9.16 
 	+ Built all code under Windows 10, with Visual Studio 2015, x64
 	
-	+ This project is to test a SIMD type API, based on VecCore/VecGeom, that could allow switching SIMD wrappers, such as UMESIMD or VC. In this test, I reorganized code.
+	+ This project is to test a SIMD type API, based on VecCore/VecGeom, that could allow switching 
+	 SIMD wrappers, such as UMESIMD or VC. In this test, I reorganized code.
 	+ VecGeom developed VecCore as an SIMD type API to be able to switch an app from using UMESIMD to using VC.  
 	
 	Questions to answer
 	+ With metaprogramming, can an application switch to a particular SIMD wrapper, with minimal re-coding, 
 
 	Issues
-	+ VecCore's test code in backend.cc  is broken in its metaprogrammnig.  It resorts to copying into simd containers, using pointers. ( And though it works with VC, it is broken with UMESIMD).
+	+ VecCore's test code in backend.cc  is broken in its metaprogrammnig.  It resorts to copying 
+	  into simd containers, using pointers. ( And though it works with VC, it is broken with UMESIMD).
 	
-	+ VecCore's test code in quadratic.cc is a better test.  But some _aligned_free of containers generate errors.  Need to review why.
-	+ statistics from quadratic.cc are off... in order to compute a mean and sigma, too many time intervals are measured.  This impacts reported performance.
+	+ VecCore's test code in quadratic.cc is a better test.  But some _aligned_free of containers 
+	  generate errors.  Need to review why.
+	+ statistics from quadratic.cc are off... in order to compute a mean and sigma, too many time 
+	  intervals are measured.  This impacts reported performance.
 
 	+ To run test with VC
 	+ 	build backend_t with Preprocessor Macro: VECCORE_ENABLE_VC
