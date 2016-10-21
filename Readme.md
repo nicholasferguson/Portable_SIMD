@@ -2,7 +2,7 @@
 2016.9.16 
 	+ Built all code under Windows 10, with Visual Studio 2015, x64
 	
-	+ This project is to test a SIMD API, based on VecCore/VecGeom, to allow switching SIMD wrappers, such as UMESIMD or VC.
+	+ This project is to test a SIMD API, based on VecCore/VecGeom, to allow switching SIMD wrappers, such as UMESIMD or VC. In this test, I reorganized their code.
 	
 	Questions to answer
 	+ Can an applicaiton switch to a particular SIMD backend, without any recoding, 
