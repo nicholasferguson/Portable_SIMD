@@ -2,15 +2,15 @@
 2016.9.16 
 	+ Built all code under Windows 10, with Visual Studio 2015, x64
 	
-	+ This project is to test a SIMD API, based on VecCore/VecGeom, to allow switching SIMD wrappers, such as UMESIMD or VC. In this test, I reorganized their code.
+	+ This project is to test a SIMD type API, based on VecCore/VecGeom, that could allow switching SIMD wrappers, such as UMESIMD or VC. In this test, I reorganized code.
 	
 	Questions to answer
-	+ Can an applicaiton switch to a particular SIMD backend, without any recoding, 
+	+ With metaprogramming, can an application switch to a particular SIMD backend, without any recoding, 
 	+ Can only one backend + SIMD selection can be configured at compile time:  Example UMSIMD + AVX2  or VC + AVX2
 
 	Issues
-	+ backend.cc from VecCore is broken in its metaprogrammnig.  It resorts to copying into simd containers, using pointers
-	+ quadratic.cc is a better test.
+	+ backend.cc from VecCore is broken in its metaprogrammnig.  It resorts to copying into simd containers, using pointers. ( And though it works with VC, it is broken with UMESIMD)
+	+ quadratic.cc is a better test.  But some _aligned_free of containers generate errors.  Need to review why.
 	+ To run test with VC
 	+ 	build backend_t with Preprocessor Macro: VECCORE_ENABLE_VC
 	+ 	All tests were OK.
