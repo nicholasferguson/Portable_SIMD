@@ -11,6 +11,7 @@
 	Issues
 	+ backend.cc from VecCore is broken in its metaprogrammnig.  It resorts to copying into simd containers, using pointers. ( And though it works with VC, it is broken with UMESIMD)
 	+ quadratic.cc is a better test.  But some _aligned_free of containers generate errors.  Need to review why.
+	+ statistics from quadratic.cc are off... in order to compute a mean and sigma, too many time intervals are measured.  This impacts performance.
 	+ To run test with VC
 	+ 	build backend_t with Preprocessor Macro: VECCORE_ENABLE_VC
 	+ 	All tests were OK.
