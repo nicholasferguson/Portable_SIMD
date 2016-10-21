@@ -27,7 +27,11 @@ This project extracted code from Cern's VecGEOM and Cern's umesimd.
 - It also extracts a backend tester from VecGEOM.  
 - And currently includes code for umesimd and Vc
 
+VecGeom/VecCore
+https://gitlab.cern.ch/VecGeom
+
 umesimd has interfaces for	( Thanks to Cern's UMESIMD team )
+https://github.com/edanor/umesimd
 - SSE
 - SSE2
 - AVX
@@ -35,6 +39,7 @@ umesimd has interfaces for	( Thanks to Cern's UMESIMD team )
 - AVX512
 
 Vc has interfaces for ( Thanks to VC team)
+https://github.com/VcDevel/Vc
 - SSE
 - SSE2
 - SSE3
