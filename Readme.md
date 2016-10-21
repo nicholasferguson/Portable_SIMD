@@ -16,7 +16,7 @@
 	+ 	All tests were OK.
 	+ To run test with UMESIMD
 	+ 	build backend_t with Preprocessor Macro: VECCORE_ENABLE_UMESIMD
-	+ 	issue with test using UME::SIMD::SIMDVec.  Container sizing is incorrect.  	
+	+ 	issue with test using UME::SIMD::SIMDVec.  Container sizing is incorrect.  (fixed)	
 		Working on a resolution.
 	
 =====================================================
