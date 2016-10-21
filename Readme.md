@@ -25,7 +25,7 @@ This project extracted code from Cern's VecGEOM and Cern's umesimd.
 
 - Essentially it uses backend interfaces of VecGEOM for various SIMD related code groups.
 - It also extracts a backend tester from VecGEOM.  
-- And currently includes code for umesimd.
+- And currently includes code for umesimd and Vc
 
 umesimd has interfaces for	( Thanks to Cern's UMESIMD team )
 - SSE
@@ -34,3 +34,11 @@ umesimd has interfaces for	( Thanks to Cern's UMESIMD team )
 - AVX2
 - AVX512
 
+Vc has interfaces for ( Thanks to VC team)
+- SSE
+- SSE2
+- SSE3
+- SSE4.1
+- SSE4.2
+- AVX
+- AVX2
