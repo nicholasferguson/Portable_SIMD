@@ -1,0 +1,1281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\vc\Vector3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="volumes\kernel\GenericKernels.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="volumes\Wedge.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="umesimd\plugins\avx\int\UMESimdVecInt16_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\include\VecCore\Backend\Deprecated.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\include\VecCore\Backend\Implementation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\include\VecCore\Backend\Interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\include\VecCore\Backend\Scalar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\include\VecCore\Backend\ScalarWrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\include\VecCore\Backend\SIMDSizes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\include\VecCore\Backend\UMESimd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\include\VecCore\Backend\UMESimdArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\include\VecCore\Backend\UMESimdCommon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\include\VecCore\Backend\VcScalar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\include\VecCore\Backend\VcSimdArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\include\VecCore\Backend\VcVector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\include\VecCore\Assert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\include\VecCore\Common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\include\VecCore\CUDA.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\include\VecCore\Limits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\include\VecCore\SIMD.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\include\VecCore\Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\include\VecCore\Types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\include\VecCore\Utilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\include\VecCore\VecMath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\Backend\Deprecated.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\Backend\Implementation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\Backend\Interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\Backend\Scalar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\Backend\ScalarWrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\Backend\SIMDSizes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\Backend\UMESimd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\Backend\UMESimdArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\Backend\UMESimdCommon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\Backend\VcScalar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\Backend\VcSimdArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\Backend\VcVector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\Assert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\Common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\CUDA.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\Limits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\SIMD.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\Types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\Utilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\VecMath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\Config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat32_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat32_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat32_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat32_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat32_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat32_32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat64_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat64_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat64_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat64_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat64_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloatPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt32_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt32_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt32_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt32_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt32_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt32_32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt64_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt64_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt64_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt64_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt64_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecIntPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\mask\UMESimdMask1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\mask\UMESimdMask2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\mask\UMESimdMask4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\mask\UMESimdMask8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\mask\UMESimdMask16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\mask\UMESimdMask32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\mask\UMESimdMaskPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\swizzle\UMESimdSwizzle4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\swizzle\UMESimdSwizzlePrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\uint\UMESimdVecFloat64_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\uint\UMESimdVecUint32_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\uint\UMESimdVecUint32_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\uint\UMESimdVecUint32_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\uint\UMESimdVecUint32_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\uint\UMESimdVecUint32_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\uint\UMESimdVecUint64_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\uint\UMESimdVecUint64_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\uint\UMESimdVecUintPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\UMESimdCastOperatorsAVX.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\UMESimdMaskAVX.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\UMESimdSwizzleAVX.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\UMESimdVecFloatAVX.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\UMESimdVecIntAVX.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx\UMESimdVecUintAVX.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat32_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat32_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat32_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat32_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat32_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat32_32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat64_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat64_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat64_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat64_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat64_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloatPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt32_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt32_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt32_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt32_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt32_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt32_32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt64_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt64_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt64_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt64_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt64_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecIntPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\mask\UMESimdMask1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\mask\UMESimdMask2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\mask\UMESimdMask4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\mask\UMESimdMask8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\mask\UMESimdMask16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\mask\UMESimdMask32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\mask\UMESimdMaskPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\swizzle\UMESimdSwizzlePrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\uint\UMESimdVecUint32_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\uint\UMESimdVecUint32_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\uint\UMESimdVecUint32_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\uint\UMESimdVecUint32_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\uint\UMESimdVecUint32_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\uint\UMESimdVecUint64_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\uint\UMESimdVecUint64_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\uint\UMESimdVecUintPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\UMESimdCastOperatorsAVX2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\UMESimdMaskAVX2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\UMESimdSwizzleAVX2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\UMESimdVecFloatAVX2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\UMESimdVecIntAVX2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx2\UMESimdVecUintAVX2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat32_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat32_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat32_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat32_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat32_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat32_32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat64_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat64_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat64_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat64_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat64_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloatPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt32_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt32_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt32_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt32_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt32_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt32_32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt64_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt64_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt64_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt64_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt64_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecIntPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\mask\UMESimdMask1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\mask\UMESimdMask2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\mask\UMESimdMask4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\mask\UMESimdMask8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\mask\UMESimdMask16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\mask\UMESimdMask32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\mask\UMESimdMaskPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\swizzle\UMESimdSwizzlePrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint32_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint32_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint32_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint32_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint32_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint32_32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint64_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint64_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint64_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint64_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint64_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUintPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\UMESimdCastOperatorsAVX512.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\UMESimdMaskAVX512.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\UMESimdSwizzleAVX512.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\UMESimdVecFloatAVX512.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\UMESimdVecIntAVX512.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\avx512\UMESimdVecUintAVX512.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\knc\float\UMESimdVecFloat32_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\knc\float\UMESimdVecFloat32_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\knc\float\UMESimdVecFloat32_32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\knc\float\UMESimdVecFloatPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\knc\int\UMESimdVecInt32_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\knc\int\UMESimdVecIntPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\knc\mask\UMESimdMask8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\knc\mask\UMESimdMask16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\knc\mask\UMESimdMask32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\knc\mask\UMESimdMaskPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\knc\swizzle\UMESimdSwizzlePrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\knc\uint\UMESimdVecUint32_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\knc\uint\UMESimdVecUintPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\knc\UMESimdCastOperatorsKNC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\knc\UMESimdMaskKNC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\knc\UMESimdSwizzleKNC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\knc\UMESimdVecFloatKNC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\knc\UMESimdVecIntKNC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\knc\UMESimdVecUintKNC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\openmp\float\UMESimdVecFloatPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\openmp\int\UMESimdVecIntPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\openmp\mask\UMESimdMaskPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\openmp\swizzle\UMESimdSwizzlePrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\openmp\uint\UMESimdVecUintPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\openmp\UMESimdCastOperators.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\openmp\UMESimdMask.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\openmp\UMESimdSwizzle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\openmp\UMESimdVecFloat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\openmp\UMESimdVecInt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\openmp\UMESimdVecUint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\float\UMESimdVecFloat32_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\float\UMESimdVecFloat32_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\float\UMESimdVecFloat32_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\float\UMESimdVecFloat32_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\float\UMESimdVecFloatPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\int\UMESimdVecInt32_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\int\UMESimdVecInt32_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\int\UMESimdVecInt32_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\int\UMESimdVecInt32_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\int\UMESimdVecIntPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\mask\UMESimdMask1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\mask\UMESimdMask2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\mask\UMESimdMask4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\mask\UMESimdMask8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\mask\UMESimdMaskPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\swizzle\UMESimdSwizzlePrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\uint\UMESimdVecUint32_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\uint\UMESimdVecUint32_2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\uint\UMESimdVecUint32_4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\uint\UMESimdVecUint32_8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\uint\UMESimdVecUintPrototype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\UMESimdCastOperatorsScalar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\UMESimdMaskScalar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\UMESimdSwizzleScalar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\UMESimdVecFloatScalar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\UMESimdVecIntScalar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\scalar\UMESimdVecUintScalar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\UMESimdPluginARM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\UMESimdPluginAVX.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\UMESimdPluginAVX2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\UMESimdPluginAVX512.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\UMESimdPluginKNC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\UMESimdPluginOpenMP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\plugins\UMESimdPluginScalarEmulation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\UMEBasicTypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\UMEInline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\UMEMemory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\UMESimd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\UMESimdInterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\UMESimdInterfaceFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\UMESimdScalarEmulation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\UMESimdScalarOperators.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\UMESimdTraits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\umesimd\UMESimdVectorEmulation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\avx\casts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\avx\const.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\avx\const_data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\avx\debug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\avx\detail.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\avx\helperimpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\avx\intrinsics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\avx\limits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\avx\macros.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\avx\mask.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\avx\math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\avx\shuffle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\avx\simd_cast.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\avx\types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\avx\vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\avx\vectorhelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\vector\casts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\algorithms.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\aliasingentryhelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\alignedbase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\bitscanintrinsics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\const.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\deinterleave.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\elementreference.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\exponential.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\fix_clang_emmintrin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\gatherimplementation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\gatherinterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\generalinterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\iif.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\indexsequence.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\interleave.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\interleavedmemory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\iterators.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\loadinterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\loadstoreflags.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\logarithm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\macros.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\make_unique.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\makeContainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\malloc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\mask.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\maskbool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\memory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\memorybase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\memoryfwd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\operators.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\permutation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\scatterimplementation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\scatterinterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\set.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\simd_cast.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\simdarray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\simdarrayfwd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\simdarrayhelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\simdize.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\simdmaskarray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\storage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\storeinterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\subscript.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\support.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\transpose.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\trigonometric.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\utility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\vectorabi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\vectortraits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\vectortuple.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\where.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\writemaskedvector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\common\x86_prefetches.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\include\Vc\cpuid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\include\Vc\global.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\include\Vc\support.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\include\Vc\vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\include\Vc\version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\mic\casts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\mic\const_data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\mic\debug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\mic\detail.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\mic\helperimpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\mic\intrinsics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\mic\limits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\mic\macros.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\mic\mask.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\mic\math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\mic\simd_cast.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\mic\sorthelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\mic\storemixin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\mic\type_traits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\mic\types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\mic\vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\mic\writemaskedvector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\scalar\helperimpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\scalar\limits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\scalar\macros.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\scalar\mask.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\scalar\math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\scalar\operators.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\scalar\simd_cast.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\scalar\type_traits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\scalar\types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\scalar\vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\sse\casts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\sse\const.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\sse\const_data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\sse\debug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\sse\detail.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\sse\helperimpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\sse\intrinsics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\sse\limits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\sse\macros.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\sse\mask.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\sse\math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\sse\shuffle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\sse\simd_cast.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\sse\type_traits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\sse\types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\sse\vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\sse\vectorhelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\traits\decay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\traits\entry_type_of.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\traits\has_addition_operator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\traits\has_contiguous_storage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\traits\has_equality_operator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\traits\has_multiply_operator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\traits\has_no_allocated_data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\traits\has_subscript_operator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\traits\is_functor_argument_immutable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\traits\is_gather_signature.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\traits\is_implicit_cast_allowed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\traits\is_index_sequence.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\traits\is_initializer_list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\traits\is_load_arguments.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\traits\is_output_iterator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backends\vc\traits\type_traits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\base\AlignedBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\base\AlignmentAllocator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\base\Array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\base\Cuda.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\base\Global.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\base\Math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\base\Transformation3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\base\Vector3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\VecCore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecCore\base\TypeMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="backends\vc\src\const.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test\quadratic.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

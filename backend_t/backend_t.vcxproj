@@ -1,0 +1,581 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A98CF26F-F4CA-4B80-A1BE-8B955D475716}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>backend_t</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v140</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;MSVC;_CONSOLE;UMESIMD_MSVC;VECCORE_ENABLE_UMESIMD;__AVX__;VECCORE_SINGLE_PRECISION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>H:\Video.Lectures.UltralF\_Project.SIMD\backend_t;H:\Video.Lectures.UltralF\_Project.SIMD\backend_t\backends;H:\Projects\Third_Party\gtest\gtest-1.7.0\include;H:\Video.Lectures.UltralF\_Project.SIMD\backend_t\backends\vc\include;H:\Video.Lectures.UltralF\_Project.SIMD\backend_t\backends\vc</AdditionalIncludeDirectories>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <StructMemberAlignment>Default</StructMemberAlignment>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>H:\Projects\Third_Party\gtest\gtest-1.7.0\build\Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>gtest.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="backend\vc\Vector3D.h" />
+    <ClInclude Include="VecCore\base\AlignedBase.h" />
+    <ClInclude Include="VecCore\base\AlignmentAllocator.h" />
+    <ClInclude Include="VecCore\base\Array.h" />
+    <ClInclude Include="VecCore\base\Cuda.h" />
+    <ClInclude Include="VecCore\base\Global.h" />
+    <ClInclude Include="VecCore\base\Math.h" />
+    <ClInclude Include="VecCore\base\Transformation3D.h" />
+    <ClInclude Include="VecCore\base\TypeMap.h" />
+    <ClInclude Include="VecCore\base\Vector3D.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat32_1.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat32_16.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat32_2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat32_32.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat32_4.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat32_8.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat64_1.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat64_16.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat64_2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat64_4.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloat64_8.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\float\UMESimdVecFloatPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt32_1.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt32_16.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt32_2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt32_32.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt32_4.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt32_8.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt64_1.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt64_16.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt64_2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt64_4.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecInt64_8.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\int\UMESimdVecIntPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\mask\UMESimdMask1.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\mask\UMESimdMask16.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\mask\UMESimdMask2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\mask\UMESimdMask32.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\mask\UMESimdMask4.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\mask\UMESimdMask8.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\mask\UMESimdMaskPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\swizzle\UMESimdSwizzlePrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\uint\UMESimdVecUint32_1.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\uint\UMESimdVecUint32_16.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\uint\UMESimdVecUint32_2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\uint\UMESimdVecUint32_4.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\uint\UMESimdVecUint32_8.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\uint\UMESimdVecUint64_1.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\uint\UMESimdVecUint64_2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\uint\UMESimdVecUintPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\UMESimdCastOperatorsAVX2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\UMESimdMaskAVX2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\UMESimdSwizzleAVX2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\UMESimdVecFloatAVX2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\UMESimdVecIntAVX2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx2\UMESimdVecUintAVX2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat32_1.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat32_16.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat32_2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat32_32.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat32_4.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat32_8.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat64_1.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat64_16.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat64_2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat64_4.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloat64_8.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\float\UMESimdVecFloatPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt32_1.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt32_16.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt32_2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt32_32.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt32_4.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt32_8.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt64_1.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt64_16.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt64_2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt64_4.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecInt64_8.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\int\UMESimdVecIntPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\mask\UMESimdMask1.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\mask\UMESimdMask16.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\mask\UMESimdMask2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\mask\UMESimdMask32.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\mask\UMESimdMask4.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\mask\UMESimdMask8.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\mask\UMESimdMaskPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\swizzle\UMESimdSwizzlePrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint32_1.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint32_16.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint32_2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint32_32.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint32_4.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint32_8.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint64_1.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint64_16.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint64_2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint64_4.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUint64_8.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\uint\UMESimdVecUintPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\UMESimdCastOperatorsAVX512.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\UMESimdMaskAVX512.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\UMESimdSwizzleAVX512.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\UMESimdVecFloatAVX512.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\UMESimdVecIntAVX512.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx512\UMESimdVecUintAVX512.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat32_1.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat32_16.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat32_2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat32_32.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat32_4.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat32_8.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat64_1.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat64_16.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat64_2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat64_4.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloat64_8.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\uint\UMESimdVecFloat64_8.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\float\UMESimdVecFloatPrototype.h" />
+    <ClInclude Include="umesimd\plugins\avx\int\UMESimdVecInt16_16.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt32_1.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt32_16.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt32_2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt32_32.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt32_4.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt32_8.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt64_1.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt64_16.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt64_2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt64_4.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecInt64_8.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\int\UMESimdVecIntPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\mask\UMESimdMask1.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\mask\UMESimdMask16.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\mask\UMESimdMask2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\mask\UMESimdMask32.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\mask\UMESimdMask4.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\mask\UMESimdMask8.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\mask\UMESimdMaskPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\swizzle\UMESimdSwizzle4.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\swizzle\UMESimdSwizzlePrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\uint\UMESimdVecUint32_1.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\uint\UMESimdVecUint32_16.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\uint\UMESimdVecUint32_2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\uint\UMESimdVecUint32_4.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\uint\UMESimdVecUint32_8.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\uint\UMESimdVecUint64_1.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\uint\UMESimdVecUint64_2.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\uint\UMESimdVecUintPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\UMESimdCastOperatorsAVX.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\UMESimdMaskAVX.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\UMESimdSwizzleAVX.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\UMESimdVecFloatAVX.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\UMESimdVecIntAVX.h" />
+    <ClInclude Include="backends\umesimd\plugins\avx\UMESimdVecUintAVX.h" />
+    <ClInclude Include="backends\umesimd\plugins\knc\float\UMESimdVecFloat32_16.h" />
+    <ClInclude Include="backends\umesimd\plugins\knc\float\UMESimdVecFloat32_32.h" />
+    <ClInclude Include="backends\umesimd\plugins\knc\float\UMESimdVecFloat32_8.h" />
+    <ClInclude Include="backends\umesimd\plugins\knc\float\UMESimdVecFloatPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\knc\int\UMESimdVecInt32_16.h" />
+    <ClInclude Include="backends\umesimd\plugins\knc\int\UMESimdVecIntPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\knc\mask\UMESimdMask16.h" />
+    <ClInclude Include="backends\umesimd\plugins\knc\mask\UMESimdMask32.h" />
+    <ClInclude Include="backends\umesimd\plugins\knc\mask\UMESimdMask8.h" />
+    <ClInclude Include="backends\umesimd\plugins\knc\mask\UMESimdMaskPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\knc\swizzle\UMESimdSwizzlePrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\knc\uint\UMESimdVecUint32_16.h" />
+    <ClInclude Include="backends\umesimd\plugins\knc\uint\UMESimdVecUintPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\knc\UMESimdCastOperatorsKNC.h" />
+    <ClInclude Include="backends\umesimd\plugins\knc\UMESimdMaskKNC.h" />
+    <ClInclude Include="backends\umesimd\plugins\knc\UMESimdSwizzleKNC.h" />
+    <ClInclude Include="backends\umesimd\plugins\knc\UMESimdVecFloatKNC.h" />
+    <ClInclude Include="backends\umesimd\plugins\knc\UMESimdVecIntKNC.h" />
+    <ClInclude Include="backends\umesimd\plugins\knc\UMESimdVecUintKNC.h" />
+    <ClInclude Include="backends\umesimd\plugins\openmp\float\UMESimdVecFloatPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\openmp\int\UMESimdVecIntPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\openmp\mask\UMESimdMaskPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\openmp\swizzle\UMESimdSwizzlePrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\openmp\uint\UMESimdVecUintPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\openmp\UMESimdCastOperators.h" />
+    <ClInclude Include="backends\umesimd\plugins\openmp\UMESimdMask.h" />
+    <ClInclude Include="backends\umesimd\plugins\openmp\UMESimdSwizzle.h" />
+    <ClInclude Include="backends\umesimd\plugins\openmp\UMESimdVecFloat.h" />
+    <ClInclude Include="backends\umesimd\plugins\openmp\UMESimdVecInt.h" />
+    <ClInclude Include="backends\umesimd\plugins\openmp\UMESimdVecUint.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\float\UMESimdVecFloat32_1.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\float\UMESimdVecFloat32_2.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\float\UMESimdVecFloat32_4.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\float\UMESimdVecFloat32_8.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\float\UMESimdVecFloatPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\int\UMESimdVecInt32_1.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\int\UMESimdVecInt32_2.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\int\UMESimdVecInt32_4.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\int\UMESimdVecInt32_8.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\int\UMESimdVecIntPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\mask\UMESimdMask1.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\mask\UMESimdMask2.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\mask\UMESimdMask4.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\mask\UMESimdMask8.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\mask\UMESimdMaskPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\swizzle\UMESimdSwizzlePrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\uint\UMESimdVecUint32_1.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\uint\UMESimdVecUint32_2.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\uint\UMESimdVecUint32_4.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\uint\UMESimdVecUint32_8.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\uint\UMESimdVecUintPrototype.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\UMESimdCastOperatorsScalar.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\UMESimdMaskScalar.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\UMESimdSwizzleScalar.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\UMESimdVecFloatScalar.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\UMESimdVecIntScalar.h" />
+    <ClInclude Include="backends\umesimd\plugins\scalar\UMESimdVecUintScalar.h" />
+    <ClInclude Include="backends\umesimd\plugins\UMESimdPluginARM.h" />
+    <ClInclude Include="backends\umesimd\plugins\UMESimdPluginAVX.h" />
+    <ClInclude Include="backends\umesimd\plugins\UMESimdPluginAVX2.h" />
+    <ClInclude Include="backends\umesimd\plugins\UMESimdPluginAVX512.h" />
+    <ClInclude Include="backends\umesimd\plugins\UMESimdPluginKNC.h" />
+    <ClInclude Include="backends\umesimd\plugins\UMESimdPluginOpenMP.h" />
+    <ClInclude Include="backends\umesimd\plugins\UMESimdPluginScalarEmulation.h" />
+    <ClInclude Include="backends\umesimd\UMEBasicTypes.h" />
+    <ClInclude Include="backends\umesimd\UMEInline.h" />
+    <ClInclude Include="backends\umesimd\UMEMemory.h" />
+    <ClInclude Include="backends\umesimd\UMESimd.h" />
+    <ClInclude Include="backends\umesimd\UMESimdInterface.h" />
+    <ClInclude Include="backends\umesimd\UMESimdInterfaceFunctions.h" />
+    <ClInclude Include="backends\umesimd\UMESimdScalarEmulation.h" />
+    <ClInclude Include="backends\umesimd\UMESimdScalarOperators.h" />
+    <ClInclude Include="backends\umesimd\UMESimdTraits.h" />
+    <ClInclude Include="backends\umesimd\UMESimdVectorEmulation.h" />
+    <ClInclude Include="backends\vc\avx\casts.h" />
+    <ClInclude Include="backends\vc\avx\const.h" />
+    <ClInclude Include="backends\vc\avx\const_data.h" />
+    <ClInclude Include="backends\vc\avx\debug.h" />
+    <ClInclude Include="backends\vc\avx\detail.h" />
+    <ClInclude Include="backends\vc\avx\helperimpl.h" />
+    <ClInclude Include="backends\vc\avx\intrinsics.h" />
+    <ClInclude Include="backends\vc\avx\limits.h" />
+    <ClInclude Include="backends\vc\avx\macros.h" />
+    <ClInclude Include="backends\vc\avx\mask.h" />
+    <ClInclude Include="backends\vc\avx\math.h" />
+    <ClInclude Include="backends\vc\avx\shuffle.h" />
+    <ClInclude Include="backends\vc\avx\simd_cast.h" />
+    <ClInclude Include="backends\vc\avx\types.h" />
+    <ClInclude Include="backends\vc\avx\vector.h" />
+    <ClInclude Include="backends\vc\avx\vectorhelper.h" />
+    <ClInclude Include="backends\vc\common\algorithms.h" />
+    <ClInclude Include="backends\vc\common\aliasingentryhelper.h" />
+    <ClInclude Include="backends\vc\common\alignedbase.h" />
+    <ClInclude Include="backends\vc\common\bitscanintrinsics.h" />
+    <ClInclude Include="backends\vc\common\const.h" />
+    <ClInclude Include="backends\vc\common\data.h" />
+    <ClInclude Include="backends\vc\common\deinterleave.h" />
+    <ClInclude Include="backends\vc\common\elementreference.h" />
+    <ClInclude Include="backends\vc\common\exponential.h" />
+    <ClInclude Include="backends\vc\common\fix_clang_emmintrin.h" />
+    <ClInclude Include="backends\vc\common\gatherimplementation.h" />
+    <ClInclude Include="backends\vc\common\gatherinterface.h" />
+    <ClInclude Include="backends\vc\common\generalinterface.h" />
+    <ClInclude Include="backends\vc\common\iif.h" />
+    <ClInclude Include="backends\vc\common\indexsequence.h" />
+    <ClInclude Include="backends\vc\common\interleave.h" />
+    <ClInclude Include="backends\vc\common\interleavedmemory.h" />
+    <ClInclude Include="backends\vc\common\iterators.h" />
+    <ClInclude Include="backends\vc\common\loadinterface.h" />
+    <ClInclude Include="backends\vc\common\loadstoreflags.h" />
+    <ClInclude Include="backends\vc\common\logarithm.h" />
+    <ClInclude Include="backends\vc\common\macros.h" />
+    <ClInclude Include="backends\vc\common\makeContainer.h" />
+    <ClInclude Include="backends\vc\common\make_unique.h" />
+    <ClInclude Include="backends\vc\common\malloc.h" />
+    <ClInclude Include="backends\vc\common\mask.h" />
+    <ClInclude Include="backends\vc\common\maskbool.h" />
+    <ClInclude Include="backends\vc\common\math.h" />
+    <ClInclude Include="backends\vc\common\memory.h" />
+    <ClInclude Include="backends\vc\common\memorybase.h" />
+    <ClInclude Include="backends\vc\common\memoryfwd.h" />
+    <ClInclude Include="backends\vc\common\operators.h" />
+    <ClInclude Include="backends\vc\common\permutation.h" />
+    <ClInclude Include="backends\vc\common\scatterimplementation.h" />
+    <ClInclude Include="backends\vc\common\scatterinterface.h" />
+    <ClInclude Include="backends\vc\common\set.h" />
+    <ClInclude Include="backends\vc\common\simdarray.h" />
+    <ClInclude Include="backends\vc\common\simdarrayfwd.h" />
+    <ClInclude Include="backends\vc\common\simdarrayhelper.h" />
+    <ClInclude Include="backends\vc\common\simdize.h" />
+    <ClInclude Include="backends\vc\common\simdmaskarray.h" />
+    <ClInclude Include="backends\vc\common\simd_cast.h" />
+    <ClInclude Include="backends\vc\common\storage.h" />
+    <ClInclude Include="backends\vc\common\storeinterface.h" />
+    <ClInclude Include="backends\vc\common\subscript.h" />
+    <ClInclude Include="backends\vc\common\support.h" />
+    <ClInclude Include="backends\vc\common\transpose.h" />
+    <ClInclude Include="backends\vc\common\trigonometric.h" />
+    <ClInclude Include="backends\vc\common\types.h" />
+    <ClInclude Include="backends\vc\common\utility.h" />
+    <ClInclude Include="backends\vc\common\vector.h" />
+    <ClInclude Include="backends\vc\common\vectorabi.h" />
+    <ClInclude Include="backends\vc\common\vectortraits.h" />
+    <ClInclude Include="backends\vc\common\vectortuple.h" />
+    <ClInclude Include="backends\vc\common\vector\casts.h" />
+    <ClInclude Include="backends\vc\common\where.h" />
+    <ClInclude Include="backends\vc\common\writemaskedvector.h" />
+    <ClInclude Include="backends\vc\common\x86_prefetches.h" />
+    <ClInclude Include="backends\vc\include\Vc\cpuid.h" />
+    <ClInclude Include="backends\vc\include\Vc\global.h" />
+    <ClInclude Include="backends\vc\include\Vc\support.h" />
+    <ClInclude Include="backends\vc\include\Vc\vector.h" />
+    <ClInclude Include="backends\vc\include\Vc\version.h" />
+    <ClInclude Include="backends\vc\mic\casts.h" />
+    <ClInclude Include="backends\vc\mic\const_data.h" />
+    <ClInclude Include="backends\vc\mic\debug.h" />
+    <ClInclude Include="backends\vc\mic\detail.h" />
+    <ClInclude Include="backends\vc\mic\helperimpl.h" />
+    <ClInclude Include="backends\vc\mic\intrinsics.h" />
+    <ClInclude Include="backends\vc\mic\limits.h" />
+    <ClInclude Include="backends\vc\mic\macros.h" />
+    <ClInclude Include="backends\vc\mic\mask.h" />
+    <ClInclude Include="backends\vc\mic\math.h" />
+    <ClInclude Include="backends\vc\mic\simd_cast.h" />
+    <ClInclude Include="backends\vc\mic\sorthelper.h" />
+    <ClInclude Include="backends\vc\mic\storemixin.h" />
+    <ClInclude Include="backends\vc\mic\types.h" />
+    <ClInclude Include="backends\vc\mic\type_traits.h" />
+    <ClInclude Include="backends\vc\mic\vector.h" />
+    <ClInclude Include="backends\vc\mic\writemaskedvector.h" />
+    <ClInclude Include="backends\vc\scalar\helperimpl.h" />
+    <ClInclude Include="backends\vc\scalar\limits.h" />
+    <ClInclude Include="backends\vc\scalar\macros.h" />
+    <ClInclude Include="backends\vc\scalar\mask.h" />
+    <ClInclude Include="backends\vc\scalar\math.h" />
+    <ClInclude Include="backends\vc\scalar\operators.h" />
+    <ClInclude Include="backends\vc\scalar\simd_cast.h" />
+    <ClInclude Include="backends\vc\scalar\types.h" />
+    <ClInclude Include="backends\vc\scalar\type_traits.h" />
+    <ClInclude Include="backends\vc\scalar\vector.h" />
+    <ClInclude Include="backends\vc\sse\casts.h" />
+    <ClInclude Include="backends\vc\sse\const.h" />
+    <ClInclude Include="backends\vc\sse\const_data.h" />
+    <ClInclude Include="backends\vc\sse\debug.h" />
+    <ClInclude Include="backends\vc\sse\detail.h" />
+    <ClInclude Include="backends\vc\sse\helperimpl.h" />
+    <ClInclude Include="backends\vc\sse\intrinsics.h" />
+    <ClInclude Include="backends\vc\sse\limits.h" />
+    <ClInclude Include="backends\vc\sse\macros.h" />
+    <ClInclude Include="backends\vc\sse\mask.h" />
+    <ClInclude Include="backends\vc\sse\math.h" />
+    <ClInclude Include="backends\vc\sse\shuffle.h" />
+    <ClInclude Include="backends\vc\sse\simd_cast.h" />
+    <ClInclude Include="backends\vc\sse\types.h" />
+    <ClInclude Include="backends\vc\sse\type_traits.h" />
+    <ClInclude Include="backends\vc\sse\vector.h" />
+    <ClInclude Include="backends\vc\sse\vectorhelper.h" />
+    <ClInclude Include="backends\vc\traits\decay.h" />
+    <ClInclude Include="backends\vc\traits\entry_type_of.h" />
+    <ClInclude Include="backends\vc\traits\has_addition_operator.h" />
+    <ClInclude Include="backends\vc\traits\has_contiguous_storage.h" />
+    <ClInclude Include="backends\vc\traits\has_equality_operator.h" />
+    <ClInclude Include="backends\vc\traits\has_multiply_operator.h" />
+    <ClInclude Include="backends\vc\traits\has_no_allocated_data.h" />
+    <ClInclude Include="backends\vc\traits\has_subscript_operator.h" />
+    <ClInclude Include="backends\vc\traits\is_functor_argument_immutable.h" />
+    <ClInclude Include="backends\vc\traits\is_gather_signature.h" />
+    <ClInclude Include="backends\vc\traits\is_implicit_cast_allowed.h" />
+    <ClInclude Include="backends\vc\traits\is_index_sequence.h" />
+    <ClInclude Include="backends\vc\traits\is_initializer_list.h" />
+    <ClInclude Include="backends\vc\traits\is_load_arguments.h" />
+    <ClInclude Include="backends\vc\traits\is_output_iterator.h" />
+    <ClInclude Include="backends\vc\traits\type_traits.h" />
+    <ClInclude Include="VecCore\Assert.h" />
+    <ClInclude Include="VecCore\Backend\Deprecated.h" />
+    <ClInclude Include="VecCore\Backend\Implementation.h" />
+    <ClInclude Include="VecCore\Backend\Interface.h" />
+    <ClInclude Include="VecCore\Backend\Scalar.h" />
+    <ClInclude Include="VecCore\Backend\ScalarWrapper.h" />
+    <ClInclude Include="VecCore\Backend\SIMDSizes.h" />
+    <ClInclude Include="VecCore\Backend\UMESimd.h" />
+    <ClInclude Include="VecCore\Backend\UMESimdArray.h" />
+    <ClInclude Include="VecCore\Backend\UMESimdCommon.h" />
+    <ClInclude Include="VecCore\Backend\VcScalar.h" />
+    <ClInclude Include="VecCore\Backend\VcSimdArray.h" />
+    <ClInclude Include="VecCore\Backend\VcVector.h" />
+    <ClInclude Include="VecCore\Common.h" />
+    <ClInclude Include="VecCore\Config.h" />
+    <ClInclude Include="VecCore\CUDA.h" />
+    <ClInclude Include="VecCore\include\VecCore\Assert.h" />
+    <ClInclude Include="VecCore\include\VecCore\Backend\Deprecated.h" />
+    <ClInclude Include="VecCore\include\VecCore\Backend\Implementation.h" />
+    <ClInclude Include="VecCore\include\VecCore\Backend\Interface.h" />
+    <ClInclude Include="VecCore\include\VecCore\Backend\Scalar.h" />
+    <ClInclude Include="VecCore\include\VecCore\Backend\ScalarWrapper.h" />
+    <ClInclude Include="VecCore\include\VecCore\Backend\SIMDSizes.h" />
+    <ClInclude Include="VecCore\include\VecCore\Backend\UMESimd.h" />
+    <ClInclude Include="VecCore\include\VecCore\Backend\UMESimdArray.h" />
+    <ClInclude Include="VecCore\include\VecCore\Backend\UMESimdCommon.h" />
+    <ClInclude Include="VecCore\include\VecCore\Backend\VcScalar.h" />
+    <ClInclude Include="VecCore\include\VecCore\Backend\VcSimdArray.h" />
+    <ClInclude Include="VecCore\include\VecCore\Backend\VcVector.h" />
+    <ClInclude Include="VecCore\include\VecCore\Common.h" />
+    <ClInclude Include="VecCore\include\VecCore\CUDA.h" />
+    <ClInclude Include="VecCore\include\VecCore\Limits.h" />
+    <ClInclude Include="VecCore\include\VecCore\SIMD.h" />
+    <ClInclude Include="VecCore\include\VecCore\Timer.h" />
+    <ClInclude Include="VecCore\include\VecCore\Types.h" />
+    <ClInclude Include="VecCore\include\VecCore\Utilities.h" />
+    <ClInclude Include="VecCore\include\VecCore\VecMath.h" />
+    <ClInclude Include="VecCore\Limits.h" />
+    <ClInclude Include="VecCore\SIMD.h" />
+    <ClInclude Include="VecCore\Timer.h" />
+    <ClInclude Include="VecCore\Types.h" />
+    <ClInclude Include="VecCore\Utilities.h" />
+    <ClInclude Include="VecCore\VecCore.h" />
+    <ClInclude Include="VecCore\VecMath.h" />
+    <ClInclude Include="volumes\kernel\GenericKernels.h" />
+    <ClInclude Include="volumes\Wedge.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="backends\vc\src\const.cpp" />
+    <ClCompile Include="test\quadratic.cc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
