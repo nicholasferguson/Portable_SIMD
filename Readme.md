@@ -1,5 +1,4 @@
 =====================================================
-2016.9.16 
 	+ Built all code under Windows 10, with Visual Studio 2015, x64
 	
 	+ This project is to test a SIMD type API, based on VecCore/VecGeom, that could allow switching 
@@ -9,10 +8,14 @@
 	Questions to answer
 	+ With metaprogramming, can an application switch to a particular SIMD wrapper, with minimal re-coding, 
 
-	Issues
-	+ VecCore's test code in backend.cc  is broken in its metaprogrammnig.  It resorts to copying 
-	  into simd containers, using pointers. ( And though it works with VC, it is broken with UMESIMD).
+	Issues Resolved
+	+ Re-coded VecCore's backend.cc test file.  Removed much of gtest.  Now all tests run OK for both VC and UMESIMD.
 	
+	    + Added a if_enable around Get and Set in implementation.h
+		+ Added to UMESIMD struct TypeTraits IsVector. ( see UMESimdCommon.h )  This works with if_enable.
+		+ Added to UMESIMD struct TypeTraits tSize (UMESimdCommon.h and Scalar.h ). This  fixed VectorSize in implementation.h and deprecated.h 
+		
+	Issues Open
 	+ VecCore's test code in quadratic.cc is a better test.  But some _aligned_free of containers 
 	  generate errors.  Need to review why.
 	+ statistics from quadratic.cc are off... in order to compute a mean and sigma, too many time 
