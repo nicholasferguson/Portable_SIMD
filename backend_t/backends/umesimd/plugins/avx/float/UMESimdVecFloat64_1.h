@@ -62,7 +62,7 @@ namespace SIMD {
         constexpr static uint32_t alignment() { return 8; }
 
         // ZERO-CONSTR
-		inline SIMDVec_f() : mVec() {}
+        inline SIMDVec_f() : mVec() {}
 
         // SET-CONSTR
         inline SIMDVec_f(double f) {
@@ -855,7 +855,7 @@ namespace SIMD {
         }
         // MHMAX
         inline double hmax(SIMDVecMask<1> const & mask) const {
-            double t0 = std::numeric_limits<double>::lowest();
+            double t0 = std::numeric_limits<double>::min();
             if (mask.mMask == true) t0 = mVec;
             return t0;
         }
@@ -887,22 +887,22 @@ namespace SIMD {
         }
 
         // GATHERS
-        inline SIMDVec_f & gather(double const * baseAddr, uint64_t const * indices) {
+        inline SIMDVec_f & gather(double * baseAddr, uint64_t * indices) {
             mVec = baseAddr[indices[0]];
             return *this;
         }
         // MGATHERS
-        inline SIMDVec_f & gather(SIMDVecMask<1> const & mask, double const * baseAddr, uint64_t const * indices) {
+        inline SIMDVec_f & gather(SIMDVecMask<1> const & mask, double * baseAddr, uint64_t * indices) {
             if (mask.mMask == true) mVec = baseAddr[indices[0]];
             return *this;
         }
         // GATHERV
-        inline SIMDVec_f & gather(double const * baseAddr, VEC_UINT_TYPE const & indices) {
+        inline SIMDVec_f & gather(double * baseAddr, VEC_UINT_TYPE const & indices) {
             mVec = baseAddr[indices[0]];
             return *this;
         }
         // MGATHERV
-        inline SIMDVec_f & gather(SIMDVecMask<1> const & mask, double const * baseAddr, VEC_UINT_TYPE const & indices) {
+        inline SIMDVec_f & gather(SIMDVecMask<1> const & mask, double * baseAddr, VEC_UINT_TYPE const & indices) {
             if (mask.mMask == true) mVec = baseAddr[indices[0]];
             return *this;
         }

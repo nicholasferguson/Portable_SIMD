@@ -418,23 +418,13 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i() : mVec() {};
 
         // SET-CONSTR
-        UME_FORCE_INLINE SIMDVec_i(SCALAR_INT_TYPE x) {
+        UME_FORCE_INLINE explicit SIMDVec_i(SCALAR_INT_TYPE x) {
             SCALAR_INT_TYPE *local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for (int i = 0; i < VEC_LEN; i++) {
                 local_ptr[i] = x;
             }
         }
-        // This constructor is used to force types other than SCALAR_TYPES
-        // to be promoted to SCALAR_TYPE instead of SCALAR_TYPE*. This prevents
-        // ambiguity between SET-CONSTR and LOAD-CONSTR.
-        template<typename T>
-        inline SIMDVec_i(
-            T i, 
-            typename std::enable_if< std::is_integral<T>::value && 
-                                    !std::is_same<T, SCALAR_INT_TYPE>::value,
-                                    void*>::type = nullptr)
-        : SIMDVec_i(static_cast<SCALAR_INT_TYPE>(i)) {}
 
         // LOAD-CONSTR
         UME_FORCE_INLINE explicit SIMDVec_i(SCALAR_INT_TYPE const * p) { this->load(p); }
@@ -514,86 +504,6 @@ namespace SIMD {
             insert(30, i30);  insert(31, i31);
         }
 
-        UME_FORCE_INLINE SIMDVec_i(
-            SCALAR_INT_TYPE i0,  SCALAR_INT_TYPE i1,  SCALAR_INT_TYPE i2,  SCALAR_INT_TYPE i3,  SCALAR_INT_TYPE i4,  SCALAR_INT_TYPE i5,  SCALAR_INT_TYPE i6,  SCALAR_INT_TYPE i7,
-            SCALAR_INT_TYPE i8,  SCALAR_INT_TYPE i9,  SCALAR_INT_TYPE i10, SCALAR_INT_TYPE i11, SCALAR_INT_TYPE i12, SCALAR_INT_TYPE i13, SCALAR_INT_TYPE i14, SCALAR_INT_TYPE i15,
-            SCALAR_INT_TYPE i16, SCALAR_INT_TYPE i17, SCALAR_INT_TYPE i18, SCALAR_INT_TYPE i19, SCALAR_INT_TYPE i20, SCALAR_INT_TYPE i21, SCALAR_INT_TYPE i22, SCALAR_INT_TYPE i23,
-            SCALAR_INT_TYPE i24, SCALAR_INT_TYPE i25, SCALAR_INT_TYPE i26, SCALAR_INT_TYPE i27, SCALAR_INT_TYPE i28, SCALAR_INT_TYPE i29, SCALAR_INT_TYPE i30, SCALAR_INT_TYPE i31,
-            SCALAR_INT_TYPE i32, SCALAR_INT_TYPE i33, SCALAR_INT_TYPE i34, SCALAR_INT_TYPE i35, SCALAR_INT_TYPE i36, SCALAR_INT_TYPE i37, SCALAR_INT_TYPE i38, SCALAR_INT_TYPE i39,
-            SCALAR_INT_TYPE i40, SCALAR_INT_TYPE i41, SCALAR_INT_TYPE i42, SCALAR_INT_TYPE i43, SCALAR_INT_TYPE i44, SCALAR_INT_TYPE i45, SCALAR_INT_TYPE i46, SCALAR_INT_TYPE i47,
-            SCALAR_INT_TYPE i48, SCALAR_INT_TYPE i49, SCALAR_INT_TYPE i50, SCALAR_INT_TYPE i51, SCALAR_INT_TYPE i52, SCALAR_INT_TYPE i53, SCALAR_INT_TYPE i54, SCALAR_INT_TYPE i55,
-            SCALAR_INT_TYPE i56, SCALAR_INT_TYPE i57, SCALAR_INT_TYPE i58, SCALAR_INT_TYPE i59, SCALAR_INT_TYPE i60, SCALAR_INT_TYPE i61, SCALAR_INT_TYPE i62, SCALAR_INT_TYPE i63)
-        {
-            insert(0, i0);    insert(1, i1);    insert(2, i2);    insert(3, i3);
-            insert(4, i4);    insert(5, i5);    insert(6, i6);    insert(7, i7);
-            insert(8, i8);    insert(9, i9);    insert(10, i10);  insert(11, i11);
-            insert(12, i12);  insert(13, i13);  insert(14, i14);  insert(15, i15);
-            insert(16, i16);  insert(17, i17);  insert(18, i18);  insert(19, i19);
-            insert(20, i20);  insert(21, i21);  insert(22, i22);  insert(23, i23);
-            insert(24, i24);  insert(25, i25);  insert(26, i26);  insert(27, i27);
-            insert(28, i28);  insert(29, i29);  insert(30, i30);  insert(31, i31);
-            insert(32, i32);  insert(33, i33);  insert(34, i34);  insert(35, i35);
-            insert(36, i36);  insert(37, i37);  insert(38, i38);  insert(39, i39);
-            insert(40, i40);  insert(41, i41);  insert(42, i42);  insert(43, i43);
-            insert(44, i44);  insert(45, i45);  insert(46, i46);  insert(47, i47);
-            insert(48, i48);  insert(49, i49);  insert(50, i50);  insert(51, i51);
-            insert(52, i52);  insert(53, i53);  insert(54, i54);  insert(55, i55);
-            insert(56, i56);  insert(57, i57);  insert(58, i58);  insert(59, i59);
-            insert(60, i60);  insert(61, i61);  insert(62, i62);  insert(63, i63);
-        }
-
-        UME_FORCE_INLINE SIMDVec_i(
-            SCALAR_INT_TYPE i0,   SCALAR_INT_TYPE i1,   SCALAR_INT_TYPE i2,   SCALAR_INT_TYPE i3,   SCALAR_INT_TYPE i4,   SCALAR_INT_TYPE i5,   SCALAR_INT_TYPE i6,   SCALAR_INT_TYPE i7,
-            SCALAR_INT_TYPE i8,   SCALAR_INT_TYPE i9,   SCALAR_INT_TYPE i10,  SCALAR_INT_TYPE i11,  SCALAR_INT_TYPE i12,  SCALAR_INT_TYPE i13,  SCALAR_INT_TYPE i14,  SCALAR_INT_TYPE i15,
-            SCALAR_INT_TYPE i16,  SCALAR_INT_TYPE i17,  SCALAR_INT_TYPE i18,  SCALAR_INT_TYPE i19,  SCALAR_INT_TYPE i20,  SCALAR_INT_TYPE i21,  SCALAR_INT_TYPE i22,  SCALAR_INT_TYPE i23,
-            SCALAR_INT_TYPE i24,  SCALAR_INT_TYPE i25,  SCALAR_INT_TYPE i26,  SCALAR_INT_TYPE i27,  SCALAR_INT_TYPE i28,  SCALAR_INT_TYPE i29,  SCALAR_INT_TYPE i30,  SCALAR_INT_TYPE i31,
-            SCALAR_INT_TYPE i32,  SCALAR_INT_TYPE i33,  SCALAR_INT_TYPE i34,  SCALAR_INT_TYPE i35,  SCALAR_INT_TYPE i36,  SCALAR_INT_TYPE i37,  SCALAR_INT_TYPE i38,  SCALAR_INT_TYPE i39,
-            SCALAR_INT_TYPE i40,  SCALAR_INT_TYPE i41,  SCALAR_INT_TYPE i42,  SCALAR_INT_TYPE i43,  SCALAR_INT_TYPE i44,  SCALAR_INT_TYPE i45,  SCALAR_INT_TYPE i46,  SCALAR_INT_TYPE i47,
-            SCALAR_INT_TYPE i48,  SCALAR_INT_TYPE i49,  SCALAR_INT_TYPE i50,  SCALAR_INT_TYPE i51,  SCALAR_INT_TYPE i52,  SCALAR_INT_TYPE i53,  SCALAR_INT_TYPE i54,  SCALAR_INT_TYPE i55,
-            SCALAR_INT_TYPE i56,  SCALAR_INT_TYPE i57,  SCALAR_INT_TYPE i58,  SCALAR_INT_TYPE i59,  SCALAR_INT_TYPE i60,  SCALAR_INT_TYPE i61,  SCALAR_INT_TYPE i62,  SCALAR_INT_TYPE i63,
-            SCALAR_INT_TYPE i64,  SCALAR_INT_TYPE i65,  SCALAR_INT_TYPE i66,  SCALAR_INT_TYPE i67,  SCALAR_INT_TYPE i68,  SCALAR_INT_TYPE i69,  SCALAR_INT_TYPE i70,  SCALAR_INT_TYPE i71,
-            SCALAR_INT_TYPE i72,  SCALAR_INT_TYPE i73,  SCALAR_INT_TYPE i74,  SCALAR_INT_TYPE i75,  SCALAR_INT_TYPE i76,  SCALAR_INT_TYPE i77,  SCALAR_INT_TYPE i78,  SCALAR_INT_TYPE i79,
-            SCALAR_INT_TYPE i80,  SCALAR_INT_TYPE i81,  SCALAR_INT_TYPE i82,  SCALAR_INT_TYPE i83,  SCALAR_INT_TYPE i84,  SCALAR_INT_TYPE i85,  SCALAR_INT_TYPE i86,  SCALAR_INT_TYPE i87,
-            SCALAR_INT_TYPE i88,  SCALAR_INT_TYPE i89,  SCALAR_INT_TYPE i90,  SCALAR_INT_TYPE i91,  SCALAR_INT_TYPE i92,  SCALAR_INT_TYPE i93,  SCALAR_INT_TYPE i94,  SCALAR_INT_TYPE i95,
-            SCALAR_INT_TYPE i96,  SCALAR_INT_TYPE i97,  SCALAR_INT_TYPE i98,  SCALAR_INT_TYPE i99,  SCALAR_INT_TYPE i100, SCALAR_INT_TYPE i101, SCALAR_INT_TYPE i102, SCALAR_INT_TYPE i103,
-            SCALAR_INT_TYPE i104, SCALAR_INT_TYPE i105, SCALAR_INT_TYPE i106, SCALAR_INT_TYPE i107, SCALAR_INT_TYPE i108, SCALAR_INT_TYPE i109, SCALAR_INT_TYPE i110, SCALAR_INT_TYPE i111,
-            SCALAR_INT_TYPE i112, SCALAR_INT_TYPE i113, SCALAR_INT_TYPE i114, SCALAR_INT_TYPE i115, SCALAR_INT_TYPE i116, SCALAR_INT_TYPE i117, SCALAR_INT_TYPE i118, SCALAR_INT_TYPE i119,
-            SCALAR_INT_TYPE i120, SCALAR_INT_TYPE i121, SCALAR_INT_TYPE i122, SCALAR_INT_TYPE i123, SCALAR_INT_TYPE i124, SCALAR_INT_TYPE i125, SCALAR_INT_TYPE i126, SCALAR_INT_TYPE i127)
-        {
-            insert(0, i0);    insert(1, i1);    insert(2, i2);    insert(3, i3);
-            insert(4, i4);    insert(5, i5);    insert(6, i6);    insert(7, i7);
-            insert(8, i8);    insert(9, i9);    insert(10, i10);  insert(11, i11);
-            insert(12, i12);  insert(13, i13);  insert(14, i14);  insert(15, i15);
-            insert(16, i16);  insert(17, i17);  insert(18, i18);  insert(19, i19);
-            insert(20, i20);  insert(21, i21);  insert(22, i22);  insert(23, i23);
-            insert(24, i24);  insert(25, i25);  insert(26, i26);  insert(27, i27);
-            insert(28, i28);  insert(29, i29);  insert(30, i30);  insert(31, i31);
-            insert(32, i32);  insert(33, i33);  insert(34, i34);  insert(35, i35);
-            insert(36, i36);  insert(37, i37);  insert(38, i38);  insert(39, i39);
-            insert(40, i40);  insert(41, i41);  insert(42, i42);  insert(43, i43);
-            insert(44, i44);  insert(45, i45);  insert(46, i46);  insert(47, i47);
-            insert(48, i48);  insert(49, i49);  insert(50, i50);  insert(51, i51);
-            insert(52, i52);  insert(53, i53);  insert(54, i54);  insert(55, i55);
-            insert(56, i56);  insert(57, i57);  insert(58, i58);  insert(59, i59);
-            insert(60, i60);  insert(61, i61);  insert(62, i62);  insert(63, i63);
-            insert(64,  i64);   insert(65, i65);    insert(66, i66);    insert(67, i67);
-            insert(68,  i68);   insert(69, i69);    insert(70, i70);    insert(71, i71);
-            insert(72,  i72);   insert(73, i73);    insert(74, i74);    insert(75, i75);
-            insert(76,  i76);   insert(77, i77);    insert(78, i78);    insert(79, i79);
-            insert(80,  i80);   insert(81, i81);    insert(82, i82);    insert(83, i83);
-            insert(84,  i84);   insert(85, i85);    insert(86, i86);    insert(87, i87);
-            insert(88,  i88);   insert(89, i89);    insert(90, i90);    insert(91, i91);
-            insert(92,  i92);   insert(93, i93);    insert(94, i94);    insert(95, i95);
-            insert(96,  i96);   insert(97, i97);    insert(98, i98);    insert(99, i99);
-            insert(100, i100);  insert(101, i101);  insert(102, i102);  insert(103, i103);
-            insert(104, i104);  insert(105, i105);  insert(106, i106);  insert(107, i107);
-            insert(108, i108);  insert(109, i109);  insert(110, i110);  insert(111, i111);
-            insert(112, i112);  insert(113, i113);  insert(114, i114);  insert(115, i115);
-            insert(116, i116);  insert(117, i117);  insert(118, i118);  insert(119, i119);
-            insert(120, i120);  insert(121, i121);  insert(122, i122);  insert(123, i123);
-            insert(124, i124);  insert(125, i125);  insert(126, i126);  insert(127, i127);
-        }
-
         // EXTRACT
         UME_FORCE_INLINE SCALAR_INT_TYPE extract(uint32_t index) const {
             return mVec[index];
@@ -626,7 +536,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & assign(SIMDVec_i const & src) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_src_ptr = &src.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_ptr[i] = local_src_ptr[i];
             }
@@ -640,7 +550,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_src_ptr = &src.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if (local_mask_ptr[i] == true) local_ptr[i] = local_src_ptr[i];
             }
@@ -649,7 +559,7 @@ namespace SIMD {
         // ASSIGNS
         UME_FORCE_INLINE SIMDVec_i & assign(SCALAR_INT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_ptr[i] = b;
             }
@@ -662,7 +572,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & assign(SIMDVecMask<VEC_LEN> const & mask, SCALAR_INT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if (local_mask_ptr[i] == true) local_ptr[i] = b;
             }
@@ -677,7 +587,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & load(SCALAR_INT_TYPE const *p) {
             SCALAR_INT_TYPE *local_ptr = &mVec[0];
             SCALAR_INT_TYPE const *local_p_ptr = &p[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_ptr[i] = local_p_ptr[i];
             }
@@ -688,7 +598,7 @@ namespace SIMD {
             SCALAR_INT_TYPE *local_ptr = &mVec[0];
             SCALAR_INT_TYPE const *local_p_ptr = &p[0];
             bool const *local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if (local_mask_ptr[i] == true) local_ptr[i] = local_p_ptr[i];
             }
@@ -698,7 +608,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & loada(SCALAR_INT_TYPE const *p) {
             SCALAR_INT_TYPE *local_ptr = &mVec[0];
             SCALAR_INT_TYPE const *local_p_ptr = &p[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_ptr[i] = local_p_ptr[i];
             }
@@ -709,7 +619,7 @@ namespace SIMD {
             SCALAR_INT_TYPE *local_ptr = &mVec[0];
             SCALAR_INT_TYPE const *local_p_ptr = &p[0];
             bool const *local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if (local_mask_ptr[i] == true) local_ptr[i] = local_p_ptr[i];
             }
@@ -719,7 +629,7 @@ namespace SIMD {
         UME_FORCE_INLINE SCALAR_INT_TYPE* store(SCALAR_INT_TYPE* p) const {
             SCALAR_INT_TYPE const *local_ptr = &mVec[0];
             SCALAR_INT_TYPE *local_p_ptr = &p[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_p_ptr[i] = local_ptr[i];
             }
@@ -730,7 +640,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const *local_ptr = &mVec[0];
             SCALAR_INT_TYPE *local_p_ptr = &p[0];
             bool const *local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if (local_mask_ptr[i] == true) local_p_ptr[i] = local_ptr[i];
             }
@@ -740,7 +650,7 @@ namespace SIMD {
         UME_FORCE_INLINE SCALAR_INT_TYPE* storea(SCALAR_INT_TYPE* p) const {
             SCALAR_INT_TYPE const *local_ptr = &mVec[0];
             SCALAR_INT_TYPE *local_p_ptr = &p[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_p_ptr[i] = local_ptr[i];
             }
@@ -751,7 +661,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const *local_ptr = &mVec[0];
             SCALAR_INT_TYPE *local_p_ptr = &p[0];
             bool const *local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if (local_mask_ptr[i] == true) local_p_ptr[i] = local_ptr[i];
             }
@@ -765,7 +675,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const *local_ptr = &mVec[0];
             SCALAR_INT_TYPE const *local_b_ptr = &b.mVec[0];
             bool const *local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) retval_ptr[i] = local_b_ptr[i];
                 else retval_ptr[i] = local_ptr[i];
@@ -778,7 +688,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const *local_ptr = &mVec[0];
             SCALAR_INT_TYPE *retval_ptr = &retval.mVec[0];
             bool const *local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) retval_ptr[i] = b;
                 else retval_ptr[i] = local_ptr[i];
@@ -794,7 +704,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] + local_b_ptr[i];
             }
@@ -810,7 +720,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] + local_b_ptr[i];
                 else local_retval_ptr[i] = local_ptr[i];
@@ -822,7 +732,7 @@ namespace SIMD {
             SIMDVec_i retval;
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] + b;
             }
@@ -837,7 +747,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] + b;
                 else local_retval_ptr[i] = local_ptr[i];
@@ -848,7 +758,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & adda(SIMDVec_i const & b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                local_ptr[i] += local_b_ptr[i];
             }
@@ -862,7 +772,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] += local_b_ptr[i];
             }
@@ -871,7 +781,7 @@ namespace SIMD {
         // ADDSA
         UME_FORCE_INLINE SIMDVec_i & adda(SCALAR_INT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_ptr[i] += b;
             }
@@ -884,7 +794,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & adda(SIMDVecMask<VEC_LEN> const & mask, SCALAR_INT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] += b;
             }
@@ -905,7 +815,7 @@ namespace SIMD {
             SIMDVec_i retval;
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i]++;
             }
@@ -920,7 +830,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i]++;
                 else local_retval_ptr[i] = local_ptr[i];
@@ -930,7 +840,7 @@ namespace SIMD {
         // PREFINC
         UME_FORCE_INLINE SIMDVec_i & prefinc() {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 ++local_ptr[i];
             }
@@ -943,7 +853,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & prefinc(SIMDVecMask<VEC_LEN> const & mask) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) ++local_ptr[i];
             }
@@ -955,7 +865,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] - local_b_ptr[i];
             }
@@ -971,7 +881,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] - local_b_ptr[i];
                 else local_retval_ptr[i] = local_ptr[i];
@@ -983,7 +893,7 @@ namespace SIMD {
             SIMDVec_i retval;
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] - b;
             }
@@ -998,7 +908,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] - b;
                 else local_retval_ptr[i] = local_ptr[i];
@@ -1009,7 +919,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & suba(SIMDVec_i const & b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                local_ptr[i] -= local_b_ptr[i];
             }
@@ -1023,7 +933,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] -= local_b_ptr[i];
             }
@@ -1032,7 +942,7 @@ namespace SIMD {
         // SUBSA
         UME_FORCE_INLINE SIMDVec_i & suba(SCALAR_INT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_ptr[i] -= b;
             }
@@ -1045,7 +955,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & suba(SIMDVecMask<VEC_LEN> const & mask, SCALAR_INT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] -= b;
             }
@@ -1067,7 +977,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_b_ptr[i] - local_ptr[i];
             }
@@ -1080,7 +990,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_b_ptr[i] - local_ptr[i];
                 else local_retval_ptr[i] = local_b_ptr[i];
@@ -1092,7 +1002,7 @@ namespace SIMD {
             SIMDVec_i retval;
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = b - local_ptr[i];
             }
@@ -1104,7 +1014,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = b - local_ptr[i];
                 else local_retval_ptr[i] = b;
@@ -1115,7 +1025,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & subfroma(SIMDVec_i const & b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                local_ptr[i] = local_b_ptr[i] - local_ptr[i];
             }
@@ -1126,7 +1036,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] = local_b_ptr[i] - local_ptr[i];
                 else local_ptr[i] = local_b_ptr[i];
@@ -1136,7 +1046,7 @@ namespace SIMD {
         // SUBFROMSA
         UME_FORCE_INLINE SIMDVec_i & subfroma(SCALAR_INT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_ptr[i] = b - local_ptr[i];
             }
@@ -1146,7 +1056,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & subfroma(SIMDVecMask<VEC_LEN> const & mask, SCALAR_INT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] = b - local_ptr[i];
                 else local_ptr[i] = b;
@@ -1158,7 +1068,7 @@ namespace SIMD {
             SIMDVec_i retval;
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i]--;
             }
@@ -1173,7 +1083,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i]--;
                 else local_retval_ptr[i] = local_ptr[i];
@@ -1183,7 +1093,7 @@ namespace SIMD {
         // PREFDEC
         UME_FORCE_INLINE SIMDVec_i & prefdec() {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 --local_ptr[i];
             }
@@ -1196,7 +1106,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & prefdec(SIMDVecMask<VEC_LEN> const & mask) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) --local_ptr[i];
             }
@@ -1208,7 +1118,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] * local_b_ptr[i];
             }
@@ -1224,7 +1134,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] * local_b_ptr[i];
                 else local_retval_ptr[i] = local_ptr[i];
@@ -1236,7 +1146,7 @@ namespace SIMD {
             SIMDVec_i retval;
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] * b;
             }
@@ -1251,7 +1161,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] * b;
                 else local_retval_ptr[i] = local_ptr[i];
@@ -1262,7 +1172,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & mula(SIMDVec_i const & b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                local_ptr[i] *= local_b_ptr[i];
             }
@@ -1276,7 +1186,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] *= local_b_ptr[i];
             }
@@ -1285,7 +1195,7 @@ namespace SIMD {
         // MULSA
         UME_FORCE_INLINE SIMDVec_i & mula(SCALAR_INT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_ptr[i] *= b;
             }
@@ -1298,7 +1208,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & mula(SIMDVecMask<VEC_LEN> const & mask, SCALAR_INT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] *= b;
             }
@@ -1310,7 +1220,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] / local_b_ptr[i];
             }
@@ -1326,7 +1236,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] / local_b_ptr[i];
                 else local_retval_ptr[i] = local_ptr[i];
@@ -1338,7 +1248,7 @@ namespace SIMD {
             SIMDVec_i retval;
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] / b;
             }
@@ -1353,7 +1263,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] / b;
                 else local_retval_ptr[i] = local_ptr[i];
@@ -1364,7 +1274,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & diva(SIMDVec_i const & b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                local_ptr[i] /= local_b_ptr[i];
             }
@@ -1378,7 +1288,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] /= local_b_ptr[i];
             }
@@ -1387,7 +1297,7 @@ namespace SIMD {
         // DIVSA
         UME_FORCE_INLINE SIMDVec_i & diva(SCALAR_INT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_ptr[i] /= b;
             }
@@ -1400,7 +1310,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & diva(SIMDVecMask<VEC_LEN> const & mask, SCALAR_INT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] /= b;
             }
@@ -1411,7 +1321,7 @@ namespace SIMD {
             SIMDVec_i retval;
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = SCALAR_INT_TYPE(1.0f) / local_ptr[i];
             }
@@ -1423,7 +1333,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = SCALAR_INT_TYPE(1.0f) / local_ptr[i];
                 else local_retval_ptr[i] = local_ptr[i];
@@ -1435,7 +1345,7 @@ namespace SIMD {
             SIMDVec_i retval;
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = b / local_ptr[i];
             }
@@ -1447,7 +1357,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = b / local_ptr[i];
                 else local_retval_ptr[i] = local_ptr[i];
@@ -1457,7 +1367,7 @@ namespace SIMD {
         // RCPA
         UME_FORCE_INLINE SIMDVec_i & rcpa() {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                local_ptr[i] = SCALAR_INT_TYPE(1.0f) / local_ptr[i];
             }
@@ -1467,7 +1377,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & rcpa(SIMDVecMask<VEC_LEN> const & mask) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] = SCALAR_INT_TYPE(1.0f) / local_ptr[i];
             }
@@ -1476,7 +1386,7 @@ namespace SIMD {
         // RCPSA
         UME_FORCE_INLINE SIMDVec_i & rcpa(SCALAR_INT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_ptr[i] = b / local_ptr[i];
             }
@@ -1486,7 +1396,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & rcpa(SIMDVecMask<VEC_LEN> const & mask, SCALAR_INT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] = b / local_ptr[i];
             }
@@ -1498,7 +1408,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool * local_retval_ptr = &retval.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] == local_b_ptr[i];
             }
@@ -1512,7 +1422,7 @@ namespace SIMD {
             SIMDVecMask<VEC_LEN> retval;
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool * local_retval_ptr = &retval.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] == b;
             }
@@ -1527,7 +1437,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool * local_retval_ptr = &retval.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] != local_b_ptr[i];
             }
@@ -1541,7 +1451,7 @@ namespace SIMD {
             SIMDVecMask<VEC_LEN> retval;
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool * local_retval_ptr = &retval.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] != b;
             }
@@ -1556,7 +1466,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool * local_retval_ptr = &retval.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] > local_b_ptr[i];
             }
@@ -1570,7 +1480,7 @@ namespace SIMD {
             SIMDVecMask<VEC_LEN> retval;
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool * local_retval_ptr = &retval.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] > b;
             }
@@ -1585,7 +1495,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool * local_retval_ptr = &retval.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] < local_b_ptr[i];
             }
@@ -1599,7 +1509,7 @@ namespace SIMD {
             SIMDVecMask<VEC_LEN> retval;
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool * local_retval_ptr = &retval.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] < b;
             }
@@ -1614,7 +1524,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool * local_retval_ptr = &retval.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] >= local_b_ptr[i];
             }
@@ -1628,7 +1538,7 @@ namespace SIMD {
             SIMDVecMask<VEC_LEN> retval;
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool * local_retval_ptr = &retval.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] >= b;
             }
@@ -1643,7 +1553,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool * local_retval_ptr = &retval.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] <= local_b_ptr[i];
             }
@@ -1657,7 +1567,7 @@ namespace SIMD {
             SIMDVecMask<VEC_LEN> retval;
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool * local_retval_ptr = &retval.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] <= b;
             }
@@ -1672,7 +1582,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool local_mask_ptr[VEC_LEN];
             bool retval = true;
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_mask_ptr[i] = local_ptr[i] == local_b_ptr[i];
             }
@@ -1687,7 +1597,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool local_mask_ptr[VEC_LEN];
             bool retval = true;
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_mask_ptr[i] = local_ptr[i] == b;
             }
@@ -1716,7 +1626,7 @@ namespace SIMD {
             SCALAR_INT_TYPE masked_copy[VEC_LEN];
             bool const * local_mask_ptr = &mask.mMask[0];
             SCALAR_INT_TYPE retval = SCALAR_INT_TYPE(0.0f);
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) masked_copy[i] = local_ptr[i];
                 else masked_copy[i] = SCALAR_INT_TYPE(0.0f);
@@ -1743,7 +1653,7 @@ namespace SIMD {
             SCALAR_INT_TYPE masked_copy[VEC_LEN];
             bool const * local_mask_ptr = &mask.mMask[0];
             SCALAR_INT_TYPE retval = b;
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) masked_copy[i] = local_ptr[i];
                 else masked_copy[i] = SCALAR_INT_TYPE(0.0f);
@@ -1769,7 +1679,7 @@ namespace SIMD {
             SCALAR_INT_TYPE masked_copy[VEC_LEN];
             bool const * local_mask_ptr = &mask.mMask[0];
             SCALAR_INT_TYPE retval = SCALAR_INT_TYPE(1.0f);
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) masked_copy[i] = local_ptr[i];
                 else masked_copy[i] = SCALAR_INT_TYPE(1.0f);
@@ -1796,7 +1706,7 @@ namespace SIMD {
             SCALAR_INT_TYPE masked_copy[VEC_LEN];
             bool const * local_mask_ptr = &mask.mMask[0];
             SCALAR_INT_TYPE retval = b;
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) masked_copy[i] = local_ptr[i];
                 else masked_copy[i] = SCALAR_INT_TYPE(1.0f);
@@ -1814,7 +1724,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             SCALAR_INT_TYPE const * local_c_ptr = &c.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] * local_b_ptr[i] + local_c_ptr[i];
             }
@@ -1828,7 +1738,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             SCALAR_INT_TYPE const * local_c_ptr = &c.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] * local_b_ptr[i] + local_c_ptr[i];
                 else local_retval_ptr[i] = local_ptr[i];
@@ -1842,7 +1752,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             SCALAR_INT_TYPE const * local_c_ptr = &c.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] * local_b_ptr[i] - local_c_ptr[i];
             }
@@ -1856,7 +1766,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             SCALAR_INT_TYPE const * local_c_ptr = &c.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] * local_b_ptr[i] - local_c_ptr[i];
                 else local_retval_ptr[i] = local_ptr[i];
@@ -1870,7 +1780,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             SCALAR_INT_TYPE const * local_c_ptr = &c.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = (local_ptr[i] + local_b_ptr[i]) * local_c_ptr[i];
             }
@@ -1884,7 +1794,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             SCALAR_INT_TYPE const * local_c_ptr = &c.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = (local_ptr[i] + local_b_ptr[i]) * local_c_ptr[i];
                 else local_retval_ptr[i] = local_ptr[i];
@@ -1898,7 +1808,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             SCALAR_INT_TYPE const * local_c_ptr = &c.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = (local_ptr[i] - local_b_ptr[i]) * local_c_ptr[i];
             }
@@ -1912,7 +1822,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             SCALAR_INT_TYPE const * local_c_ptr = &c.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = (local_ptr[i] - local_b_ptr[i]) * local_c_ptr[i];
                 else local_retval_ptr[i] = local_ptr[i];
@@ -1925,7 +1835,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_ptr[i] > local_b_ptr[i]) local_retval_ptr[i] = local_ptr[i];
                 else local_retval_ptr[i] = local_b_ptr[i];
@@ -1939,7 +1849,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 bool predicate = local_ptr[i] > local_b_ptr[i];
                 bool cond = local_mask_ptr[i] && !predicate;
@@ -1953,7 +1863,7 @@ namespace SIMD {
             SIMDVec_i retval;
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_ptr[i] > b) local_retval_ptr[i] = local_ptr[i];
                 else local_retval_ptr[i] = b;
@@ -1966,7 +1876,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 bool predicate = local_ptr[i] > b;
                 bool cond = local_mask_ptr[i] && !predicate;
@@ -1979,7 +1889,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & maxa(SIMDVec_i const & b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_ptr[i] <= local_b_ptr[i]) local_ptr[i] = local_b_ptr[i];
             }
@@ -1990,7 +1900,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 bool predicate = local_ptr[i] > local_b_ptr[i];
                 bool cond = local_mask_ptr[i] && !predicate;
@@ -2001,7 +1911,7 @@ namespace SIMD {
         // MAXSA
         UME_FORCE_INLINE SIMDVec_i & maxa(SCALAR_INT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_ptr[i] <= b) local_ptr[i] = b;
             }
@@ -2011,7 +1921,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & maxa(SIMDVecMask<VEC_LEN> const & mask, SCALAR_INT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 bool predicate = local_ptr[i] > b;
                 bool cond = local_mask_ptr[i] && !predicate;
@@ -2025,7 +1935,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_ptr[i] < local_b_ptr[i]) local_retval_ptr[i] = local_ptr[i];
                 else local_retval_ptr[i] = local_b_ptr[i];
@@ -2039,7 +1949,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 bool predicate = local_ptr[i] < local_b_ptr[i];
                 bool cond = local_mask_ptr[i] && !predicate;
@@ -2053,7 +1963,7 @@ namespace SIMD {
             SIMDVec_i retval;
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_ptr[i] < b) local_retval_ptr[i] = local_ptr[i];
                 else local_retval_ptr[i] = b;
@@ -2066,7 +1976,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 bool predicate = local_ptr[i] < b;
                 bool cond = local_mask_ptr[i] && !predicate;
@@ -2079,7 +1989,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & mina(SIMDVec_i const & b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_ptr[i] > local_b_ptr[i]) local_ptr[i] = local_b_ptr[i];
             }
@@ -2090,7 +2000,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 bool predicate = local_ptr[i] < local_b_ptr[i];
                 bool cond = local_mask_ptr[i] && !predicate;
@@ -2101,7 +2011,7 @@ namespace SIMD {
         // MINSA
         UME_FORCE_INLINE SIMDVec_i & mina(SCALAR_INT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_ptr[i] > b) local_ptr[i] = b;
             }
@@ -2111,7 +2021,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & mina(SIMDVecMask<VEC_LEN> const & mask, SCALAR_INT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 bool predicate = local_ptr[i] < b;
                 bool cond = local_mask_ptr[i] && !predicate;
@@ -2135,7 +2045,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] & local_b_ptr[i];
             }
@@ -2151,7 +2061,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] & local_b_ptr[i];
                 else local_retval_ptr[i] = local_ptr[i];
@@ -2163,7 +2073,7 @@ namespace SIMD {
             SIMDVec_i retval;
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] & b;
             }
@@ -2178,7 +2088,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] & b;
                 else local_retval_ptr[i] = local_ptr[i];
@@ -2189,7 +2099,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & banda(SIMDVec_i const & b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                local_ptr[i] &= local_b_ptr[i];
             }
@@ -2203,7 +2113,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] &= local_b_ptr[i];
             }
@@ -2212,7 +2122,7 @@ namespace SIMD {
         // BANDSA
         UME_FORCE_INLINE SIMDVec_i & banda(int32_t b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_ptr[i] &= b;
             }
@@ -2225,7 +2135,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & banda(SIMDVecMask<VEC_LEN> const & mask, int32_t b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] &= b;
             }
@@ -2237,7 +2147,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] | local_b_ptr[i];
             }
@@ -2253,7 +2163,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] | local_b_ptr[i];
                 else local_retval_ptr[i] = local_ptr[i];
@@ -2265,7 +2175,7 @@ namespace SIMD {
             SIMDVec_i retval;
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] | b;
             }
@@ -2280,7 +2190,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] | b;
                 else local_retval_ptr[i] = local_ptr[i];
@@ -2291,7 +2201,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & bora(SIMDVec_i const & b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                local_ptr[i] |= local_b_ptr[i];
             }
@@ -2305,7 +2215,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] |= local_b_ptr[i];
             }
@@ -2314,7 +2224,7 @@ namespace SIMD {
         // BORSA
         UME_FORCE_INLINE SIMDVec_i & bora(int32_t b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_ptr[i] |= b;
             }
@@ -2327,7 +2237,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & bora(SIMDVecMask<VEC_LEN> const & mask, int32_t b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] |= b;
             }
@@ -2339,7 +2249,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] ^ local_b_ptr[i];
             }
@@ -2355,7 +2265,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] ^ local_b_ptr[i];
                 else local_retval_ptr[i] = local_ptr[i];
@@ -2367,7 +2277,7 @@ namespace SIMD {
             SIMDVec_i retval;
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] ^ b;
             }
@@ -2382,7 +2292,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] ^ b;
                 else local_retval_ptr[i] = local_ptr[i];
@@ -2393,7 +2303,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & bxora(SIMDVec_i const & b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                local_ptr[i] ^= local_b_ptr[i];
             }
@@ -2407,7 +2317,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] ^= local_b_ptr[i];
             }
@@ -2416,7 +2326,7 @@ namespace SIMD {
         // BXORSA
         UME_FORCE_INLINE SIMDVec_i & bxora(int32_t b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_ptr[i] ^= b;
             }
@@ -2429,7 +2339,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & bxora(SIMDVecMask<VEC_LEN> const & mask, int32_t b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] ^= b;
             }
@@ -2440,7 +2350,7 @@ namespace SIMD {
             SIMDVec_i retval;
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = ~local_ptr[i];
             }
@@ -2455,7 +2365,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = ~local_ptr[i];
                 else local_retval_ptr[i] = local_ptr[i];
@@ -2465,7 +2375,7 @@ namespace SIMD {
         // BNOTA
         UME_FORCE_INLINE SIMDVec_i & bnota() {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_ptr[i] = ~local_ptr[i];
             }
@@ -2475,7 +2385,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & bnota(SIMDVecMask<VEC_LEN> const & mask) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] = ~local_ptr[i];
             }
@@ -2497,7 +2407,7 @@ namespace SIMD {
             SCALAR_INT_TYPE masked_copy[VEC_LEN];
             bool const * local_mask_ptr = &mask.mMask[0];
             SCALAR_INT_TYPE retval = SCALAR_INT_TYPE(0xFFFFFFFFFFFFFFFF);
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) masked_copy[i] = local_ptr[i];
                 else masked_copy[i] = SCALAR_INT_TYPE(0xFFFFFFFFFFFFFFFF);
@@ -2524,7 +2434,7 @@ namespace SIMD {
             SCALAR_INT_TYPE masked_copy[VEC_LEN];
             bool const * local_mask_ptr = &mask.mMask[0];
             SCALAR_INT_TYPE retval = b;
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) masked_copy[i] = local_ptr[i];
                 else masked_copy[i] = SCALAR_INT_TYPE(0xFFFFFFFFFFFFFFFF);
@@ -2551,7 +2461,7 @@ namespace SIMD {
             SCALAR_INT_TYPE masked_copy[VEC_LEN];
             bool const * local_mask_ptr = &mask.mMask[0];
             SCALAR_INT_TYPE retval = SCALAR_INT_TYPE(0);
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) masked_copy[i] = local_ptr[i];
                 else masked_copy[i] = SCALAR_INT_TYPE(0);
@@ -2578,7 +2488,7 @@ namespace SIMD {
             SCALAR_INT_TYPE masked_copy[VEC_LEN];
             bool const * local_mask_ptr = &mask.mMask[0];
             SCALAR_INT_TYPE retval = b;
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) masked_copy[i] = local_ptr[i];
                 else masked_copy[i] = SCALAR_INT_TYPE(0);
@@ -2605,7 +2515,7 @@ namespace SIMD {
             SCALAR_INT_TYPE masked_copy[VEC_LEN];
             bool const * local_mask_ptr = &mask.mMask[0];
             SCALAR_INT_TYPE retval = SCALAR_INT_TYPE(0);
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) masked_copy[i] = local_ptr[i];
                 else masked_copy[i] = SCALAR_INT_TYPE(0);
@@ -2632,7 +2542,7 @@ namespace SIMD {
             SCALAR_INT_TYPE masked_copy[VEC_LEN];
             bool const * local_mask_ptr = &mask.mMask[0];
             SCALAR_INT_TYPE retval = b;
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) masked_copy[i] = local_ptr[i];
                 else masked_copy[i] = SCALAR_INT_TYPE(0);
@@ -2649,7 +2559,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] % local_b_ptr[i];
             }
@@ -2665,7 +2575,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] % local_b_ptr[i];
                 else local_retval_ptr[i] = local_ptr[i];
@@ -2677,7 +2587,7 @@ namespace SIMD {
             SIMDVec_i retval;
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] % b;
             }
@@ -2692,7 +2602,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] % b;
                 else local_retval_ptr[i] = local_ptr[i];
@@ -2703,7 +2613,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & rema(SIMDVec_i const & b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                local_ptr[i] %= local_b_ptr[i];
             }
@@ -2717,7 +2627,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] %= local_b_ptr[i];
             }
@@ -2726,7 +2636,7 @@ namespace SIMD {
         // REMSA
         UME_FORCE_INLINE SIMDVec_i & rema(SCALAR_INT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_ptr[i] %= b;
             }
@@ -2739,7 +2649,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & rema(SIMDVecMask<VEC_LEN> const & mask, SCALAR_INT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] %= b;
             }
@@ -2751,7 +2661,7 @@ namespace SIMD {
             bool * local_retval_ptr = &retval.mMask[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] && local_b_ptr[i];
             }
@@ -2762,7 +2672,7 @@ namespace SIMD {
             SIMDVecMask<VEC_LEN> retval;
             bool * local_retval_ptr = &retval.mMask[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] && b;
             }
@@ -2774,7 +2684,7 @@ namespace SIMD {
             bool * local_retval_ptr = &retval.mMask[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_INT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] || local_b_ptr[i];
             }
@@ -2785,14 +2695,14 @@ namespace SIMD {
             SIMDVecMask<VEC_LEN> retval;
             bool * local_retval_ptr = &retval.mMask[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] || b;
             }
             return retval;
         }
         // GATHERS
-        UME_FORCE_INLINE SIMDVec_i & gather(SCALAR_INT_TYPE const * baseAddr, SCALAR_UINT_TYPE const * indices) {
+        UME_FORCE_INLINE SIMDVec_i & gather(SCALAR_INT_TYPE * baseAddr, SCALAR_UINT_TYPE* indices) {
             for(int i = 0; i < VEC_LEN; i++)
             {
                 mVec[i] = baseAddr[indices[i]];
@@ -2800,7 +2710,7 @@ namespace SIMD {
             return *this;
         }
         // MGATHERS
-        UME_FORCE_INLINE SIMDVec_i & gather(SIMDVecMask<VEC_LEN> const & mask, SCALAR_INT_TYPE const * baseAddr, SCALAR_UINT_TYPE const * indices) {
+        UME_FORCE_INLINE SIMDVec_i & gather(SIMDVecMask<VEC_LEN> const & mask, SCALAR_INT_TYPE* baseAddr, SCALAR_UINT_TYPE* indices) {
             for(int i = 0; i < VEC_LEN; i++)
             {
                 if(mask.mMask[i] == true) mVec[i] = baseAddr[indices[i]];
@@ -2808,7 +2718,7 @@ namespace SIMD {
             return *this;
         }
         // GATHERV
-        UME_FORCE_INLINE SIMDVec_i & gather(SCALAR_INT_TYPE const * baseAddr, SIMDVec_u<SCALAR_UINT_TYPE, VEC_LEN> const & indices) {
+        UME_FORCE_INLINE SIMDVec_i & gather(SCALAR_INT_TYPE * baseAddr, SIMDVec_u<SCALAR_UINT_TYPE, VEC_LEN> const & indices) {
             for(int i = 0; i < VEC_LEN; i++)
             {
                 mVec[i] = baseAddr[indices.mVec[i]];
@@ -2816,7 +2726,7 @@ namespace SIMD {
             return *this;
         }
         // MGATHERV
-        UME_FORCE_INLINE SIMDVec_i & gather(SIMDVecMask<VEC_LEN> const & mask, SCALAR_INT_TYPE const * baseAddr, SIMDVec_u<SCALAR_UINT_TYPE, VEC_LEN> const & indices) {
+        UME_FORCE_INLINE SIMDVec_i & gather(SIMDVecMask<VEC_LEN> const & mask, SCALAR_INT_TYPE* baseAddr, SIMDVec_u<SCALAR_UINT_TYPE, VEC_LEN> const & indices) {
             for(int i = 0; i < VEC_LEN; i++)
             {
                 if(mask.mMask[i] == true) mVec[i] = baseAddr[indices.mVec[i]];
@@ -2861,7 +2771,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_UINT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] << local_b_ptr[i];
             }
@@ -2874,7 +2784,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_UINT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] << local_b_ptr[i];
                 else local_retval_ptr[i] = local_ptr[i];
@@ -2886,7 +2796,7 @@ namespace SIMD {
             SIMDVec_i retval;
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] << b;
             }
@@ -2898,7 +2808,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] << b;
                 else local_retval_ptr[i] = local_ptr[i];
@@ -2909,7 +2819,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & lsha(SIMDVec_u<SCALAR_UINT_TYPE, VEC_LEN> const & b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_UINT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                local_ptr[i] <<= local_b_ptr[i];
             }
@@ -2920,7 +2830,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_UINT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] <<= local_b_ptr[i];
             }
@@ -2929,7 +2839,7 @@ namespace SIMD {
         // LSHSA
         UME_FORCE_INLINE SIMDVec_i & lsha(SCALAR_UINT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_ptr[i] <<= b;
             }
@@ -2939,7 +2849,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & lsha(SIMDVecMask<VEC_LEN> const & mask, SCALAR_UINT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] <<= b;
             }
@@ -2951,7 +2861,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_UINT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] >> local_b_ptr[i];
             }
@@ -2964,7 +2874,7 @@ namespace SIMD {
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             SCALAR_UINT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] >> local_b_ptr[i];
                 else local_retval_ptr[i] = local_ptr[i];
@@ -2976,7 +2886,7 @@ namespace SIMD {
             SIMDVec_i retval;
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = local_ptr[i] >> b;
             }
@@ -2988,7 +2898,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = local_ptr[i] >> b;
                 else local_retval_ptr[i] = local_ptr[i];
@@ -2999,7 +2909,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & rsha(SIMDVec_u<SCALAR_UINT_TYPE, VEC_LEN> const & b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_UINT_TYPE const * local_b_ptr = &b.mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                local_ptr[i] >>= local_b_ptr[i];
             }
@@ -3010,7 +2920,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             SCALAR_UINT_TYPE const * local_b_ptr = &b.mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] >>= local_b_ptr[i];
             }
@@ -3019,7 +2929,7 @@ namespace SIMD {
         // RSHSA
         UME_FORCE_INLINE SIMDVec_i & rsha(SCALAR_UINT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_ptr[i] >>= b;
             }
@@ -3029,7 +2939,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & rsha(SIMDVecMask<VEC_LEN> const & mask, SCALAR_UINT_TYPE b) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] >>= b;
             }
@@ -3056,7 +2966,7 @@ namespace SIMD {
             SIMDVec_i retval;
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_retval_ptr[i] = -local_ptr[i];
             }
@@ -3071,7 +2981,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_retval_ptr[i] = -local_ptr[i];
                 else local_retval_ptr[i] = local_ptr[i];
@@ -3081,7 +2991,7 @@ namespace SIMD {
         // NEGA
         UME_FORCE_INLINE SIMDVec_i & nega() {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 local_ptr[i] = -local_ptr[i];
             }
@@ -3091,7 +3001,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & nega(SIMDVecMask<VEC_LEN> const & mask) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_mask_ptr[i] == true) local_ptr[i] = -local_ptr[i];
             }
@@ -3102,7 +3012,7 @@ namespace SIMD {
             SIMDVec_i retval;
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_ptr[i] >= 0 ) local_retval_ptr[i] = local_ptr[i];
                 else local_retval_ptr[i] = -local_ptr[i];
@@ -3115,7 +3025,7 @@ namespace SIMD {
             SCALAR_INT_TYPE * local_retval_ptr = &retval.mVec[0];
             SCALAR_INT_TYPE const * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 bool predicate = local_ptr[i] < 0;
                 bool cond = local_mask_ptr[i] && predicate;
@@ -3128,7 +3038,7 @@ namespace SIMD {
         // ABSA
         UME_FORCE_INLINE SIMDVec_i & absa() {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 if(local_ptr[i] < 0 ) local_ptr[i] = -local_ptr[i];
             }
@@ -3138,7 +3048,7 @@ namespace SIMD {
         UME_FORCE_INLINE SIMDVec_i & absa(SIMDVecMask<VEC_LEN> const & mask) {
             SCALAR_INT_TYPE * local_ptr = &mVec[0];
             bool const * local_mask_ptr = &mask.mMask[0];
-            #pragma omp simd safelen(VEC_LEN)
+            #pragma omp simd simdlen(VEC_LEN) safelen(VEC_LEN)
             for(int i = 0; i < VEC_LEN; i++) {
                 bool predicate = local_ptr[i] < 0;
                 bool cond = local_mask_ptr[i] && predicate;

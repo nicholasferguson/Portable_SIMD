@@ -1099,7 +1099,7 @@ namespace SIMD {
         // MHMIN
         inline uint32_t hmin(SIMDVecMask<2> const & mask) const {
             uint32_t t0 = mask.mMask[0] ? mVec[0] : std::numeric_limits<uint32_t>::max();
-            uint32_t t1 = (mask.mMask[1] && (mVec[1] < t0)) ? mVec[1] : t0;
+            uint32_t t1 = (mask.mMask[1] && mVec[1] < t0) ? mVec[1] : t0;
             return t1;
         }
         // IMIN
@@ -1387,25 +1387,25 @@ namespace SIMD {
         }
 
         // GATHERS
-        inline SIMDVec_u & gather(uint32_t const * baseAddr, uint32_t const * indices) {
+        inline SIMDVec_u & gather(uint32_t * baseAddr, uint32_t* indices) {
             mVec[0] = baseAddr[indices[0]];
             mVec[1] = baseAddr[indices[1]];
             return *this;
         }
         // MGATHERS
-        inline SIMDVec_u & gather(SIMDVecMask<2> const & mask, uint32_t const * baseAddr, uint32_t const * indices) {
+        inline SIMDVec_u & gather(SIMDVecMask<2> const & mask, uint32_t* baseAddr, uint32_t* indices) {
             if (mask.mMask[0] == true) mVec[0] = baseAddr[indices[0]];
             if (mask.mMask[1] == true) mVec[1] = baseAddr[indices[1]];
             return *this;
         }
         // GATHERV
-        inline SIMDVec_u & gather(uint32_t const * baseAddr, SIMDVec_u const & indices) {
+        inline SIMDVec_u & gather(uint32_t * baseAddr, SIMDVec_u const & indices) {
             mVec[0] = baseAddr[indices.mVec[0]];
             mVec[1] = baseAddr[indices.mVec[1]];
             return *this;
         }
         // MGATHERV
-        inline SIMDVec_u & gather(SIMDVecMask<2> const & mask, uint32_t const * baseAddr, SIMDVec_u const & indices) {
+        inline SIMDVec_u & gather(SIMDVecMask<2> const & mask, uint32_t* baseAddr, SIMDVec_u const & indices) {
             if (mask.mMask[0] == true) mVec[0] = baseAddr[indices.mVec[0]];
             if (mask.mMask[1] == true) mVec[1] = baseAddr[indices.mVec[1]];
             return *this;

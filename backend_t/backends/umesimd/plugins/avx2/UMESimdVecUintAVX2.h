@@ -54,6 +54,5 @@
 
 #include "uint/UMESimdVecUint64_1.h"
 #include "uint/UMESimdVecUint64_2.h"
-#include "uint/UMESimdVecUint64_4.h"
 
 #endif

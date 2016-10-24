@@ -802,7 +802,7 @@ namespace SIMD {
         // MHADD
         inline float hadd(SIMDVecMask<8> const & mask) const {
             __m256 t0 = _mm256_set1_ps(0.0f);
-            __m256 t1 = BLEND(t0, mVec, mask.mMask);
+            __m256 t1 = BLEND(mVec, t0, mask.mMask);
             __m256 t2 = _mm256_hadd_ps(t1, t1);
             __m256 t3 = _mm256_hadd_ps(t2, t2);
             __m128 t4 = _mm256_extractf128_ps(t3, 1);
@@ -824,7 +824,7 @@ namespace SIMD {
         // MHADDS
         inline float hadd(SIMDVecMask<8> const & mask, float b) const {
             __m256 t0 = _mm256_set1_ps(0.0f);
-            __m256 t1 = BLEND(t0, mVec, mask.mMask);
+            __m256 t1 = BLEND(mVec, t0, mask.mMask);
             __m256 t2 = _mm256_hadd_ps(t1, t1);
             __m256 t3 = _mm256_hadd_ps(t2, t2);
             __m128 t4 = _mm256_extractf128_ps(t3, 1);
@@ -850,7 +850,7 @@ namespace SIMD {
         inline float hmul(SIMDVecMask<8> const & mask) const {
             __m128 t0 = _mm_set1_ps(1.0f);
             __m256 t1 = _mm256_set1_ps(1.0f);
-            __m256 t2 = BLEND(t1, mVec, mask.mMask);
+            __m256 t2 = BLEND(mVec, t1, mask.mMask);
             __m128 t3 = _mm256_castps256_ps128(t2);
             __m128 t4 = _mm256_extractf128_ps(t2, 1);
             __m128 t5 = _mm_mul_ps(t3, t4);
@@ -878,7 +878,7 @@ namespace SIMD {
         inline float hmul(SIMDVecMask<8> const & mask, float b) const {
             __m128 t0 = _mm_set1_ps(1.0f);
             __m256 t1 = _mm256_set1_ps(1.0f);
-            __m256 t2 = BLEND(t1, mVec, mask.mMask);
+            __m256 t2 = BLEND(mVec, t1, mask.mMask);
             __m128 t3 = _mm256_castps256_ps128(t2);
             __m128 t4 = _mm256_extractf128_ps(t2, 1);
             __m128 t5 = _mm_mul_ps(t3, t4);
@@ -1105,25 +1105,25 @@ namespace SIMD {
         // MIMIN
 
         // GATHERS
-        inline SIMDVec_f & gather(float const * baseAddr, uint32_t const * indices) {
+        inline SIMDVec_f & gather(float* baseAddr, uint32_t* indices) {
             __m256i t0 = _mm256_loadu_si256((__m256i*)indices);
             mVec = _mm256_i32gather_ps((const float *)baseAddr, t0, 4);
             return *this;
         }
         // MGATHERS
-        inline SIMDVec_f & gather(SIMDVecMask<8> const & mask, float const * baseAddr, uint32_t const * indices) {
+        inline SIMDVec_f & gather(SIMDVecMask<8> const & mask, float* baseAddr, uint32_t* indices) {
             __m256i t0 = _mm256_loadu_si256((__m256i*)indices);
             __m256 t1 = _mm256_i32gather_ps((const float *)baseAddr, t0, 4);
             mVec = BLEND(mVec, t1, mask.mMask);
             return *this;
         }
         // GATHERV
-        inline SIMDVec_f & gather(float const * baseAddr, SIMDVec_u<uint32_t, 8> const & indices) {
+        inline SIMDVec_f & gather(float* baseAddr, SIMDVec_u<uint32_t, 8> const & indices) {
             mVec = _mm256_i32gather_ps((const float *)baseAddr, indices.mVec, 4);
             return *this;
         }
         // MGATHERV
-        inline SIMDVec_f & gather(SIMDVecMask<8> const & mask, float const * baseAddr, SIMDVec_u<uint32_t, 8> const & indices) {
+        inline SIMDVec_f & gather(SIMDVecMask<8> const & mask, float* baseAddr, SIMDVec_u<uint32_t, 8> const & indices) {
             __m256 t0 = _mm256_i32gather_ps((const float *)baseAddr, indices.mVec, 4);
             mVec = BLEND(mVec, t0, mask.mMask);
             return *this;
@@ -1344,64 +1344,28 @@ namespace SIMD {
         // MLOG10
         // SIN
         UME_FORCE_INLINE SIMDVec_f sin() const {
-#if defined(UME_USE_SVML)
-            __m256 t0 = _mm256_sin_ps(mVec);
-            return SIMDVec_f(t0);
-#else
             return VECTOR_EMULATION::sinf<SIMDVec_f, SIMDVec_i<int32_t, 8>, SIMDVecMask<8>>(*this);
-#endif
         }
         // MSIN
         UME_FORCE_INLINE SIMDVec_f sin(SIMDVecMask<8> const & mask) const {
-#if defined(UME_USE_SVML)
-            __m256 t0 = _mm256_sin_ps(mVec);
-            __m256 t1 = BLEND(mVec, t0, mask.mMask);
-            return SIMDVec_f(t0);
-#else
             return VECTOR_EMULATION::sinf<SIMDVec_f, SIMDVec_i<int32_t, 8>, SIMDVecMask<8>>(mask, *this);
-#endif
         }
         // COS
         UME_FORCE_INLINE SIMDVec_f cos() const {
-#if defined(UME_USE_SVML)
-            __m256 t0 = _mm256_cos_ps(mVec);
-            return SIMDVec_f(t0);
-#else
             return VECTOR_EMULATION::cosf<SIMDVec_f, SIMDVec_i<int32_t, 8>, SIMDVecMask<8>>(*this);
-#endif
         }
         // MCOS
         UME_FORCE_INLINE SIMDVec_f cos(SIMDVecMask<8> const & mask) const {
-#if defined(UME_USE_SVML)
-            __m256 t0 = _mm256_cos_ps(mVec);
-            __m256 t1 = BLEND(mVec, t0, mask.mMask);
-            return SIMDVec_f(t0);
-#else
             return VECTOR_EMULATION::cosf<SIMDVec_f, SIMDVec_i<int32_t, 8>, SIMDVecMask<8>>(mask, *this);
-#endif
         }
         // SINCOS
         UME_FORCE_INLINE void sincos(SIMDVec_f & sinvec, SIMDVec_f & cosvec) const {
-        #if defined(UME_USE_SVML)
-            alignas(32) float raw_cos[8];
-            sinvec.mVec = _mm256_sincos_ps((__m256*)raw_cos, mVec);
-            cosvec.mVec = _mm256_load_ps(raw_cos);
-        #else
             VECTOR_EMULATION::sincosf<SIMDVec_f, SIMDVec_i<int32_t, 8>, SIMDVecMask<8>>(*this, sinvec, cosvec);
-        #endif
         }
         // MSINCOS
         UME_FORCE_INLINE void sincos(SIMDVecMask<8> const & mask, SIMDVec_f & sinvec, SIMDVec_f & cosvec) const {
-        #if defined(UME_USE_SVML)
-            alignas(32) float raw_cos[8];
-            __m256 t0 = _mm256_sincos_ps((__m256*)raw_cos, mVec);
-            __m256 t1 = _mm256_load_ps(raw_cos);
-            sinvec.mVec = BLEND(mVec, t0, mask.mMask);
-            cosvec.mVec = BLEND(mVec, t1, mask.mMask);
-        #else
             sinvec = SCALAR_EMULATION::MATH::sin<SIMDVec_f, SIMDVecMask<8>>(mask, *this);
             cosvec = SCALAR_EMULATION::MATH::cos<SIMDVec_f, SIMDVecMask<8>>(mask, *this);
-        #endif
         }
         // TAN
         // MTAN

@@ -53,44 +53,44 @@ namespace SIMD {
         bool mMask;
 
     public:
-        UME_FORCE_INLINE SIMDVecMask() {}
+        inline SIMDVecMask() {}
 
         // Regardless of the mask representation, the interface should only allow initialization using 
         // standard bool or using equivalent mask
-        UME_FORCE_INLINE SIMDVecMask(bool m) {
+        inline SIMDVecMask(bool m) {
             mMask = m;
         }
 
         // LOAD-CONSTR - Construct by loading from memory
-        UME_FORCE_INLINE explicit SIMDVecMask(bool const * p) {
+        inline explicit SIMDVecMask(bool const * p) {
             mMask = p[0];
         }
 
-        UME_FORCE_INLINE SIMDVecMask(SIMDVecMask const & mask) {
+        inline SIMDVecMask(SIMDVecMask const & mask) {
             mMask = mask.mMask;
         }
 
-        UME_FORCE_INLINE bool extract(uint32_t index) const {
+        inline bool extract(uint32_t index) const {
             return mMask;
         }
 
         // A non-modifying element-wise access operator
-        UME_FORCE_INLINE bool operator[] (uint32_t index) const {
+        inline bool operator[] (uint32_t index) const {
             return mMask;
         }
 
         // Element-wise modification operator
-        UME_FORCE_INLINE void insert(uint32_t index, bool x) {
+        inline void insert(uint32_t index, bool x) {
             mMask = x;
         }
 
-        UME_FORCE_INLINE SIMDVecMask & operator= (SIMDVecMask const & mask) {
+        inline SIMDVecMask & operator= (SIMDVecMask const & mask) {
             mMask = mask.mMask;
             return *this;
         }
 
         // HLOR
-        UME_FORCE_INLINE bool hlor() const {
+        inline bool hlor() const {
             return mMask;
         }
     };

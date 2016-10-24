@@ -995,7 +995,7 @@ namespace SIMD {
         }
         // MHMAX
         inline double hmax(SIMDVecMask<2> const & mask) const {
-            double t0 = mask.mMask[0] ? mVec[0] : std::numeric_limits<double>::lowest();
+            double t0 = mask.mMask[0] ? mVec[0] : std::numeric_limits<int32_t>::min();
             double t1 = (mask.mMask[1] && mVec[1] > t0) ? mVec[1] : t0;
             return t1;
         }
@@ -1006,7 +1006,7 @@ namespace SIMD {
         // MIMAX
         inline int32_t imax(SIMDVecMask<2> const & mask) const {
             int32_t i0 = 0xFFFFFFFF;
-            double t0 = std::numeric_limits<double>::lowest();
+            double t0 = std::numeric_limits<double>::min();
             if(mask.mMask[0] == true) {
                 i0 = 0;
                 t0 = mVec[0];
@@ -1045,25 +1045,25 @@ namespace SIMD {
         }
 
         // GATHERS
-        inline SIMDVec_f & gather(double const * baseAddr, uint64_t const * indices) {
+        inline SIMDVec_f & gather(double * baseAddr, uint64_t * indices) {
             mVec[0] = baseAddr[indices[0]];
             mVec[1] = baseAddr[indices[1]];
             return *this;
         }
         // MGATHERS
-        inline SIMDVec_f & gather(SIMDVecMask<2> const & mask, double const * baseAddr, uint64_t const * indices) {
+        inline SIMDVec_f & gather(SIMDVecMask<2> const & mask, double * baseAddr, uint64_t * indices) {
             if (mask.mMask[0] == true) mVec[0] = baseAddr[indices[0]];
             if (mask.mMask[1] == true) mVec[1] = baseAddr[indices[1]];
             return *this;
         }
         // GATHERV
-        inline SIMDVec_f & gather(double const * baseAddr, VEC_UINT_TYPE const & indices) {
+        inline SIMDVec_f & gather(double * baseAddr, VEC_UINT_TYPE const & indices) {
             mVec[0] = baseAddr[indices.mVec[0]];
             mVec[1] = baseAddr[indices.mVec[1]];
             return *this;
         }
         // MGATHERV
-        inline SIMDVec_f & gather(SIMDVecMask<2> const & mask, double const * baseAddr, VEC_UINT_TYPE const & indices) {
+        inline SIMDVec_f & gather(SIMDVecMask<2> const & mask, double * baseAddr, VEC_UINT_TYPE const & indices) {
             if (mask.mMask[0] == true) mVec[0] = baseAddr[indices.mVec[0]];
             if (mask.mMask[1] == true) mVec[1] = baseAddr[indices.mVec[1]];
             return *this;

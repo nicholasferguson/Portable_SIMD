@@ -150,6 +150,7 @@ namespace SIMD {
         return SCALAR_EMULATION::xtoy <SIMDVec_i<int64_t, 2>, int64_t, SIMDVec_u<uint64_t, 2>>(*this);
     }
 
+    template<>
     inline SIMDVec_u<uint64_t, 4>::operator SIMDVec_i<int64_t, 4>() const {
         return SCALAR_EMULATION::xtoy <SIMDVec_i<int64_t, 4>, int64_t, SIMDVec_u<uint64_t, 4>>(*this);
     }
@@ -214,6 +215,7 @@ namespace SIMD {
         return SCALAR_EMULATION::xtoy <SIMDVec_f<double, 2>, double, SIMDVec_u<uint64_t, 2>>(*this);
     }
 
+    template<>
     inline SIMDVec_u<uint64_t, 4>::operator SIMDVec_f<double, 4>() const {
         return SCALAR_EMULATION::xtoy <SIMDVec_f<double, 4>, double, SIMDVec_u<uint64_t, 4>>(*this);
     }
@@ -424,22 +426,9 @@ namespace SIMD {
 
     inline SIMDVec_f<float, 8>::operator SIMDVec_u<uint32_t, 8>() const {
         // C++: Truncation is default rounding mode for floating-integer conversion.
-        // __mm256_cvtps_epi32 is not enough need to fall back to scalar
-        alignas(32) float raw_f[8];
-        alignas(32) uint32_t raw_u[8];
         __m256 t0 = _mm256_round_ps(mVec, _MM_FROUND_TO_ZERO | _MM_FROUND_NO_EXC);
-        _mm256_store_ps(&raw_f[0], t0);
-
-        raw_u[0] = (uint32_t)raw_f[0];
-        raw_u[1] = (uint32_t)raw_f[1];
-        raw_u[2] = (uint32_t)raw_f[2];
-        raw_u[3] = (uint32_t)raw_f[3];
-        raw_u[4] = (uint32_t)raw_f[4];
-        raw_u[5] = (uint32_t)raw_f[5];
-        raw_u[6] = (uint32_t)raw_f[6];
-        raw_u[7] = (uint32_t)raw_f[7];
-
-        return SIMDVec_u<uint32_t, 8>(raw_u);
+        __m256i t1 = _mm256_cvtps_epi32(t0);
+        return SIMDVec_u<uint32_t, 8>(t1);
     }
 
     inline SIMDVec_f<float, 16>::operator SIMDVec_u<uint32_t, 16>() const {
@@ -845,6 +834,7 @@ namespace SIMD {
         return SCALAR_EMULATION::xtoy <SIMDVec_u<uint32_t, 2>, uint32_t, SIMDVec_u<uint64_t, 2>>(*this);
     }
 
+    template<>
     inline SIMDVec_u<uint64_t, 4>::operator SIMDVec_u<uint32_t, 4>() const {
         return SCALAR_EMULATION::xtoy <SIMDVec_u<uint32_t, 4>, uint32_t, SIMDVec_u<uint64_t, 4>>(*this);
     }

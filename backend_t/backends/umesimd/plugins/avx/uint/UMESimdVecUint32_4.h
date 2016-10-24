@@ -156,9 +156,11 @@ namespace SIMD {
             mVec = _mm_blendv_epi8(mVec, t0, mask.mMask);
             return *this;
         }
+
         // PREFETCH0
         // PREFETCH1
         // PREFETCH2
+
         // LOAD
         inline SIMDVec_u & load(uint32_t const * p) {
             mVec = _mm_loadu_si128((__m128i*)p);
@@ -205,6 +207,7 @@ namespace SIMD {
             _mm_store_si128((__m128i*) p, t1);
             return p;
         }
+
         // BLENDV
         inline SIMDVec_u blend(SIMDVecMask<4> const & mask, SIMDVec_u const & b) const {
             __m128i t0 = _mm_blendv_epi8(mVec, b.mVec, mask.mMask);
@@ -218,6 +221,7 @@ namespace SIMD {
         }
         // SWIZZLE
         // SWIZZLEA
+
         // ADDV
         inline SIMDVec_u add(SIMDVec_u const & b) const {
             __m128i t0 = _mm_add_epi32(mVec, b.mVec);
@@ -538,6 +542,7 @@ namespace SIMD {
         // MRCPA
         // RCPSA
         // MRCPSA
+
         // CMPEQV
         inline SIMDVecMask<4> cmpeq(SIMDVec_u const & b) const {
             __m128i t0 = _mm_cmpeq_epi32(mVec, b.mVec);
@@ -732,7 +737,7 @@ namespace SIMD {
         // MHMULS
         inline uint32_t hmul(SIMDVecMask<4> const & mask, uint32_t b) const {
             alignas(16) uint32_t raw[4];
-            __m128i t0 = _mm_blendv_epi8(_mm_set1_epi32(1), mVec, mask.mMask);
+            __m128i t0 = _mm_blendv_epi8(_mm_set1_epi32(0), mVec, mask.mMask);
             _mm_store_si128((__m128i*)raw, t0);
             return raw[0] * raw[1] * raw[2] * raw[3] * b;
         }
@@ -1181,20 +1186,20 @@ namespace SIMD {
         }
 
         // GATHERS
-        inline SIMDVec_u & gather(uint32_t const * baseAddr, uint32_t const * indices) {
+        inline SIMDVec_u & gather(uint32_t* baseAddr, uint32_t* indices) {
             alignas(16) uint32_t raw[4] = { baseAddr[indices[0]], baseAddr[indices[1]], baseAddr[indices[2]], baseAddr[indices[3]] };
             mVec = _mm_load_si128((__m128i*)raw);
             return *this;
         }
         // MGATHERS
-        inline SIMDVec_u & gather(SIMDVecMask<4> const & mask, uint32_t const * baseAddr, uint32_t const * indices) {
+        inline SIMDVec_u & gather(SIMDVecMask<4> const & mask, uint32_t* baseAddr, uint32_t* indices) {
             alignas(16) uint32_t raw[4] = { baseAddr[indices[0]], baseAddr[indices[1]], baseAddr[indices[2]], baseAddr[indices[3]] };
             __m128i t0 = _mm_load_si128((__m128i*)raw);
             mVec = _mm_blendv_epi8(mVec, t0, mask.mMask);
             return *this;
         }
         // GATHERV
-        inline SIMDVec_u & gather(uint32_t const * baseAddr, SIMDVec_u const & indices) {
+        inline SIMDVec_u & gather(uint32_t* baseAddr, SIMDVec_u const & indices) {
             alignas(16) uint32_t rawInd[4];
             alignas(16) uint32_t raw[4];
 
@@ -1204,7 +1209,7 @@ namespace SIMD {
             return *this;
         }
         // MGATHERV
-        inline SIMDVec_u & gather(SIMDVecMask<4> const & mask, uint32_t const * baseAddr, SIMDVec_u const & indices) {
+        inline SIMDVec_u & gather(SIMDVecMask<4> const & mask, uint32_t* baseAddr, SIMDVec_u const & indices) {
             alignas(16) uint32_t rawInd[4];
             alignas(16) uint32_t raw[4];
 

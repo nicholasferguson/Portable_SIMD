@@ -247,37 +247,15 @@ namespace SIMD {
         // SADDV
         inline SIMDVec_i sadd(SIMDVec_i const & b) const {
             const int64_t MAX_VAL = std::numeric_limits<int64_t>::max();
-            const int64_t MIN_VAL = std::numeric_limits<int64_t>::min();
-            int64_t t0;
-
-            if (mVec > 0 && b.mVec > 0 && (MAX_VAL - mVec < b.mVec)) {
-                t0 = MAX_VAL;
-            }
-            else if (mVec < 0 && b.mVec < 0 && (MIN_VAL - mVec > b.mVec)) {
-                t0 = MIN_VAL;
-            }
-            else {
-                t0 = mVec + b.mVec;
-            }
+            int64_t t0 = (mVec > MAX_VAL - b.mVec) ? MAX_VAL : mVec + b.mVec;
             return SIMDVec_i(t0);
         }
         // MSADDV
         inline SIMDVec_i sadd(SIMDVecMask<1> const & mask, SIMDVec_i const & b) const {
             const int64_t MAX_VAL = std::numeric_limits<int64_t>::max();
-            const int64_t MIN_VAL = std::numeric_limits<int64_t>::min();
             int64_t t0;
-
-            if (mask.mMask == true)
-            {
-                if (mVec > 0 && b.mVec > 0 && (MAX_VAL - mVec < b.mVec)) {
-                    t0 = MAX_VAL;
-                }
-                else if (mVec < 0 && b.mVec < 0 && (MIN_VAL - mVec > b.mVec)) {
-                    t0 = MIN_VAL;
-                }
-                else {
-                    t0 = mVec + b.mVec;
-                }
+            if (mask.mMask == true) {
+                t0 = (mVec > MAX_VAL - b.mVec) ? MAX_VAL : mVec + b.mVec;
             }
             else {
                 t0 = mVec;
@@ -287,37 +265,15 @@ namespace SIMD {
         // SADDS
         inline SIMDVec_i sadd(int64_t b) const {
             const int64_t MAX_VAL = std::numeric_limits<int64_t>::max();
-            const int64_t MIN_VAL = std::numeric_limits<int64_t>::min();
-            int64_t t0;
-
-            if (mVec > 0 && b > 0 && (MAX_VAL - mVec < b)) {
-                t0 = MAX_VAL;
-            }
-            else if (mVec < 0 && b < 0 && (MIN_VAL - mVec > b)) {
-                t0 = MIN_VAL;
-            }
-            else {
-                t0 = mVec + b;
-            }
+            int64_t t0 = (mVec > MAX_VAL - b) ? MAX_VAL : mVec + b;
             return SIMDVec_i(t0);
         }
         // MSADDS
-        UME_FORCE_INLINE SIMDVec_i sadd(SIMDVecMask<1> const & mask, int64_t b) const {
+        inline SIMDVec_i sadd(SIMDVecMask<1> const & mask, int64_t b) const {
             const int64_t MAX_VAL = std::numeric_limits<int64_t>::max();
-            const int64_t MIN_VAL = std::numeric_limits<int64_t>::min();
             int64_t t0;
-
-            if (mask.mMask == true)
-            {
-                if (mVec > 0 && b > 0 && (MAX_VAL - mVec < b)) {
-                    t0 = MAX_VAL;
-                }
-                else if (mVec < 0 && b < 0 && (MIN_VAL - mVec > b)) {
-                    t0 = MIN_VAL;
-                }
-                else {
-                    t0 = mVec + b;
-                }
+            if (mask.mMask == true) {
+                t0 = (mVec > MAX_VAL - b) ? MAX_VAL : mVec + b;
             }
             else {
                 t0 = mVec;
@@ -325,74 +281,30 @@ namespace SIMD {
             return SIMDVec_i(t0);
         }
         // SADDVA
-        UME_FORCE_INLINE SIMDVec_i & sadda(SIMDVec_i const & b) {
+        inline SIMDVec_i & sadda(SIMDVec_i const & b) {
             const int64_t MAX_VAL = std::numeric_limits<int64_t>::max();
-            const int64_t MIN_VAL = std::numeric_limits<int64_t>::min();
-
-            if (mVec > 0 && b.mVec > 0 && (MAX_VAL - mVec < b.mVec)) {
-                mVec = MAX_VAL;
-            }
-            else if (mVec < 0 && b.mVec < 0 && (MIN_VAL - mVec > b.mVec)) {
-                mVec = MIN_VAL;
-            }
-            else {
-                mVec = mVec + b.mVec;
-            }
+            mVec = (mVec > MAX_VAL - b.mVec) ? MAX_VAL : mVec + b.mVec;
             return *this;
         }
         // MSADDVA
-        UME_FORCE_INLINE SIMDVec_i & sadda(SIMDVecMask<1> const & mask, SIMDVec_i const & b) {
+        inline SIMDVec_i & sadda(SIMDVecMask<1> const & mask, SIMDVec_i const & b) {
             const int64_t MAX_VAL = std::numeric_limits<int64_t>::max();
-            const int64_t MIN_VAL = std::numeric_limits<int64_t>::min();
-
-            if (mask.mMask == true)
-            {
-                if (mVec > 0 && b.mVec > 0 && (MAX_VAL - mVec < b.mVec)) {
-                    mVec = MAX_VAL;
-                }
-                else if (mVec < 0 && b.mVec < 0 && (MIN_VAL - mVec > b.mVec)) {
-                    mVec = MIN_VAL;
-                }
-                else {
-                    mVec = mVec + b.mVec;
-                }
+            if (mask.mMask == true) {
+                mVec = (mVec > MAX_VAL - b.mVec) ? MAX_VAL : mVec + b.mVec;
             }
             return *this;
         }
         // SADDSA
-        UME_FORCE_INLINE SIMDVec_i & sadd(int64_t b) {
+        inline SIMDVec_i & sadd(int64_t b) {
             const int64_t MAX_VAL = std::numeric_limits<int64_t>::max();
-            const int64_t MIN_VAL = std::numeric_limits<int64_t>::min();
-
-            for (int i = 0; i < 2; i++) {
-                if (mVec > 0 && b > 0 && (MAX_VAL - mVec < b)) {
-                    mVec = MAX_VAL;
-                }
-                else if (mVec < 0 && b < 0 && (MIN_VAL - mVec > b)) {
-                    mVec = MIN_VAL;
-                }
-                else {
-                    mVec = mVec + b;
-                }
-            }
+            mVec = (mVec > MAX_VAL - b) ? MAX_VAL : mVec + b;
             return *this;
         }
         // MSADDSA
-        UME_FORCE_INLINE SIMDVec_i & sadda(SIMDVecMask<1> const & mask, int64_t b) {
+        inline SIMDVec_i & sadda(SIMDVecMask<1> const & mask, int64_t b) {
             const int64_t MAX_VAL = std::numeric_limits<int64_t>::max();
-            const int64_t MIN_VAL = std::numeric_limits<int64_t>::min();
-
-            if (mask.mMask == true)
-            {
-                if (mVec > 0 && b > 0 && (MAX_VAL - mVec < b)) {
-                    mVec = MAX_VAL;
-                }
-                else if (mVec < 0 && b < 0 && (MIN_VAL - mVec > b)) {
-                    mVec = MIN_VAL;
-                }
-                else {
-                    mVec = mVec + b;
-                }
+            if (mask.mMask == true) {
+                mVec = (mVec > MAX_VAL - b) ? MAX_VAL : mVec + b;
             }
             return *this;
         }
@@ -1273,22 +1185,22 @@ namespace SIMD {
         }
 
         // GATHERS
-        inline SIMDVec_i & gather(int64_t const * baseAddr, uint64_t const * indices) {
+        inline SIMDVec_i & gather(int64_t * baseAddr, uint64_t* indices) {
             mVec = baseAddr[indices[0]];
             return *this;
         }
         // MGATHERS
-        inline SIMDVec_i & gather(SIMDVecMask<1> const & mask, int64_t const * baseAddr, uint64_t const * indices) {
+        inline SIMDVec_i & gather(SIMDVecMask<1> const & mask, int64_t* baseAddr, uint64_t* indices) {
             if (mask.mMask == true) mVec = baseAddr[indices[0]];
             return *this;
         }
         // GATHERV
-        inline SIMDVec_i gather(int64_t const * baseAddr, SIMDVec_u<uint64_t, 1> const & indices) {
+        inline SIMDVec_i gather(int64_t * baseAddr, SIMDVec_u<uint64_t, 1> const & indices) {
             mVec = baseAddr[indices.mVec];
             return *this;
         }
         // MGATHERV
-        inline SIMDVec_i gather(SIMDVecMask<1> const & mask, int64_t const * baseAddr, SIMDVec_u<uint64_t, 1> const & indices) {
+        inline SIMDVec_i gather(SIMDVecMask<1> const & mask, int64_t* baseAddr, SIMDVec_u<uint64_t, 1> const & indices) {
             if (mask.mMask == true) mVec = baseAddr[indices.mVec];
             return *this;
         }

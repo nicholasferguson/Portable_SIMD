@@ -251,15 +251,15 @@ namespace SIMD {
         constexpr static uint32_t alignment() { return VEC_LEN*sizeof(SCALAR_FLOAT_TYPE); }
 
         // ZERO-CONSTR
-        UME_FORCE_INLINE SIMDVec_f() : mVec() {};
+        inline SIMDVec_f() : mVec() {};
 
         // SET-CONSTR
-        UME_FORCE_INLINE SIMDVec_f(SCALAR_FLOAT_TYPE f) : mVec(f) {};
+        inline SIMDVec_f(SCALAR_FLOAT_TYPE f) : mVec(f) {};
         // This constructor is used to force types other than SCALAR_TYPES
         // to be promoted to SCALAR_TYPE instead of SCALAR_TYPE*. This prevents
         // ambiguity between SET-CONSTR and LOAD-CONSTR.
         template<typename T>
-        UME_FORCE_INLINE SIMDVec_f(
+        inline SIMDVec_f(
             T i, 
             typename std::enable_if< std::is_same<T, int>::value && 
                                     !std::is_same<T, SCALAR_FLOAT_TYPE>::value,
@@ -267,19 +267,19 @@ namespace SIMD {
         : SIMDVec_f(static_cast<SCALAR_FLOAT_TYPE>(i)) {}
 
         // LOAD-CONSTR
-        UME_FORCE_INLINE explicit SIMDVec_f(SCALAR_FLOAT_TYPE const * p) { this->load(p); }
+        inline explicit SIMDVec_f(SCALAR_FLOAT_TYPE const * p) { this->load(p); }
 
-        UME_FORCE_INLINE SIMDVec_f(SCALAR_FLOAT_TYPE f0, SCALAR_FLOAT_TYPE f1) {
+        inline SIMDVec_f(SCALAR_FLOAT_TYPE f0, SCALAR_FLOAT_TYPE f1) {
             mVec.insert(0, f0); mVec.insert(1, f1);
         }
 
-        UME_FORCE_INLINE SIMDVec_f(
+        inline SIMDVec_f(
             SCALAR_FLOAT_TYPE f0, SCALAR_FLOAT_TYPE f1,
             SCALAR_FLOAT_TYPE f2, SCALAR_FLOAT_TYPE f3) {
             mVec.insert(0, f0);  mVec.insert(1, f1);  mVec.insert(2, f2);  mVec.insert(3, f3);
         }
 
-        UME_FORCE_INLINE SIMDVec_f(
+        inline SIMDVec_f(
             SCALAR_FLOAT_TYPE f0, SCALAR_FLOAT_TYPE f1,
             SCALAR_FLOAT_TYPE f2, SCALAR_FLOAT_TYPE f3,
             SCALAR_FLOAT_TYPE f4, SCALAR_FLOAT_TYPE f5,
@@ -291,7 +291,7 @@ namespace SIMD {
             mVec.insert(6, f6);  mVec.insert(7, f7);
         }
 
-        UME_FORCE_INLINE SIMDVec_f(
+        inline SIMDVec_f(
             SCALAR_FLOAT_TYPE f0, SCALAR_FLOAT_TYPE f1,
             SCALAR_FLOAT_TYPE f2, SCALAR_FLOAT_TYPE f3,
             SCALAR_FLOAT_TYPE f4, SCALAR_FLOAT_TYPE f5,
@@ -311,7 +311,7 @@ namespace SIMD {
             mVec.insert(14, f14);  mVec.insert(15, f15);
         }
 
-        UME_FORCE_INLINE SIMDVec_f(
+        inline SIMDVec_f(
             SCALAR_FLOAT_TYPE f0, SCALAR_FLOAT_TYPE f1,
             SCALAR_FLOAT_TYPE f2, SCALAR_FLOAT_TYPE f3,
             SCALAR_FLOAT_TYPE f4, SCALAR_FLOAT_TYPE f5,
@@ -348,52 +348,52 @@ namespace SIMD {
         }
 
         // EXTRACT
-        UME_FORCE_INLINE SCALAR_FLOAT_TYPE extract(uint32_t index) const {
+        inline SCALAR_FLOAT_TYPE extract(uint32_t index) const {
             return mVec[index];
         }
-        UME_FORCE_INLINE SCALAR_FLOAT_TYPE operator[] (uint32_t index) const {
+        inline SCALAR_FLOAT_TYPE operator[] (uint32_t index) const {
             return extract(index);
         }
 
         // INSERT
-        UME_FORCE_INLINE SIMDVec_f & insert(uint32_t index, SCALAR_FLOAT_TYPE value) {
+        inline SIMDVec_f & insert(uint32_t index, SCALAR_FLOAT_TYPE value) {
             mVec.insert(index, value);
             return *this;
         }
-        UME_FORCE_INLINE IntermediateIndex<SIMDVec_f, SCALAR_FLOAT_TYPE> operator[] (uint32_t index) {
+        inline IntermediateIndex<SIMDVec_f, SCALAR_FLOAT_TYPE> operator[] (uint32_t index) {
             return IntermediateIndex<SIMDVec_f, SCALAR_FLOAT_TYPE>(index, static_cast<SIMDVec_f &>(*this));
         }
 
         // Override Mask Access operators
 #if defined(USE_PARENTHESES_IN_MASK_ASSIGNMENT)
-        UME_FORCE_INLINE IntermediateMask<SIMDVec_f, SCALAR_FLOAT_TYPE, MASK_TYPE> operator() (MASK_TYPE const & mask) {
+        inline IntermediateMask<SIMDVec_f, SCALAR_FLOAT_TYPE, MASK_TYPE> operator() (MASK_TYPE const & mask) {
             return IntermediateMask<SIMDVec_f, SCALAR_FLOAT_TYPE, MASK_TYPE>(mask, static_cast<SIMDVec_f &>(*this));
         }
 #else
-        UME_FORCE_INLINE IntermediateMask<SIMDVec_f, SCALAR_FLOAT_TYPE, MASK_TYPE> operator[] (MASK_TYPE const & mask) {
+        inline IntermediateMask<SIMDVec_f, SCALAR_FLOAT_TYPE, MASK_TYPE> operator[] (MASK_TYPE const & mask) {
             return IntermediateMask<SIMDVec_f, SCALAR_FLOAT_TYPE, MASK_TYPE>(mask, static_cast<SIMDVec_f &>(*this));
         }
 #endif
 
         // ASSIGNV
-        UME_FORCE_INLINE SIMDVec_f & operator= (SIMDVec_f const & b) {
+        inline SIMDVec_f & operator= (SIMDVec_f const & b) {
             return this->assign(b);
         }
         // ASSIGNS
-        UME_FORCE_INLINE SIMDVec_f & operator= (SCALAR_FLOAT_TYPE b) {
+        inline SIMDVec_f & operator= (SCALAR_FLOAT_TYPE b) {
             return this->assign(b);
         }
         // MASSIGNS
 
         // DEGRADE
-        UME_FORCE_INLINE operator SIMDVec_f<SCALAR_FLOAT_LOWER_PRECISION, VEC_LEN>() const;
+        inline operator SIMDVec_f<SCALAR_FLOAT_LOWER_PRECISION, VEC_LEN>() const;
         // PROMOTE
-        UME_FORCE_INLINE operator SIMDVec_f<SCALAR_FLOAT_HIGHER_PRECISION, VEC_LEN>() const;
+        inline operator SIMDVec_f<SCALAR_FLOAT_HIGHER_PRECISION, VEC_LEN>() const;
 
         // FTOU
-        UME_FORCE_INLINE operator SIMDVec_u<SCALAR_UINT_TYPE, VEC_LEN>() const;
+        inline operator SIMDVec_u<SCALAR_UINT_TYPE, VEC_LEN>() const;
         // FTOI
-        UME_FORCE_INLINE operator SIMDVec_i<SCALAR_INT_TYPE, VEC_LEN>() const;
+        inline operator SIMDVec_i<SCALAR_INT_TYPE, VEC_LEN>() const;
     };
 
     // SIMD NullTypes. These are used whenever a terminating

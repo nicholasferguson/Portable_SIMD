@@ -146,11 +146,11 @@ namespace SIMD
 
         // define cast operator
         operator SCALAR_TYPE() const { return mValue; };
-             
+         /*      
         UME_FORCE_INLINE ScalarTypeWrapper & operator=(ScalarTypeWrapper const & x){
             mValue = x.mValue;
             return *this;
-        }
+        }*/
 
         // Also define a non-modifying access operator
         UME_FORCE_INLINE SCALAR_TYPE operator[] (uint32_t index) const { return mValue; }
@@ -2492,52 +2492,28 @@ namespace SIMD
         UME_FORCE_INLINE VEC_TYPE & operator= (const double & x) { }
  
     public:
-        // GATHERU
-        UME_FORCE_INLINE DERIVED_VEC_TYPE & gatheru (SCALAR_TYPE const * baseAddr, uint32_t stride) {
-            UME_EMULATION_WARNING();
-            return SCALAR_EMULATION::gatheru<DERIVED_VEC_TYPE, SCALAR_TYPE> (static_cast<DERIVED_VEC_TYPE &>(*this), baseAddr, stride);
-        }
-
-        // MGATHERU
-        UME_FORCE_INLINE DERIVED_VEC_TYPE & gatheru (MASK_TYPE const & mask, SCALAR_TYPE const * baseAddr, uint32_t stride) {
-            UME_EMULATION_WARNING();
-            return SCALAR_EMULATION::gatheru<DERIVED_VEC_TYPE, SCALAR_TYPE, MASK_TYPE> (mask, static_cast<DERIVED_VEC_TYPE &>(*this), baseAddr, stride);
-        }
-
         // GATHERS
-        UME_FORCE_INLINE DERIVED_VEC_TYPE & gather (SCALAR_TYPE const * baseAddr, SCALAR_UINT_TYPE const * indices) {
+        UME_FORCE_INLINE DERIVED_VEC_TYPE & gather (SCALAR_TYPE * baseAddr, SCALAR_UINT_TYPE* indices) {
             UME_EMULATION_WARNING();
             return SCALAR_EMULATION::gather<DERIVED_VEC_TYPE, SCALAR_TYPE, SCALAR_UINT_TYPE> (static_cast<DERIVED_VEC_TYPE &>(*this), baseAddr, indices);
         }
 
         // MGATHERS
-        UME_FORCE_INLINE DERIVED_VEC_TYPE & gather (MASK_TYPE const & mask, SCALAR_TYPE const * baseAddr, SCALAR_UINT_TYPE const * indices) {
+        UME_FORCE_INLINE DERIVED_VEC_TYPE & gather (MASK_TYPE const & mask, SCALAR_TYPE* baseAddr, SCALAR_UINT_TYPE* indices) {
             UME_EMULATION_WARNING();
             return SCALAR_EMULATION::gather<DERIVED_VEC_TYPE, SCALAR_TYPE, SCALAR_UINT_TYPE, MASK_TYPE> (mask, static_cast<DERIVED_VEC_TYPE &>(*this), baseAddr, indices);
         }
 
         // GATHERV
-        UME_FORCE_INLINE DERIVED_VEC_TYPE & gather (SCALAR_TYPE const * baseAddr, DERIVED_UINT_VEC_TYPE const & indices) {
+        UME_FORCE_INLINE DERIVED_VEC_TYPE & gather (SCALAR_TYPE * baseAddr, DERIVED_UINT_VEC_TYPE const & indices) {
             UME_EMULATION_WARNING();
             return SCALAR_EMULATION::gather<DERIVED_VEC_TYPE, SCALAR_TYPE, DERIVED_UINT_VEC_TYPE> (static_cast<DERIVED_VEC_TYPE &>(*this), baseAddr, indices);
         }
 
         // MGATHERV
-        UME_FORCE_INLINE DERIVED_VEC_TYPE & gather (MASK_TYPE const & mask, SCALAR_TYPE const * baseAddr, DERIVED_UINT_VEC_TYPE const & indices) {
+        UME_FORCE_INLINE DERIVED_VEC_TYPE & gather (MASK_TYPE const & mask, SCALAR_TYPE* baseAddr, DERIVED_UINT_VEC_TYPE const & indices) {
             UME_EMULATION_WARNING();
             return SCALAR_EMULATION::gather<DERIVED_VEC_TYPE, SCALAR_TYPE, DERIVED_UINT_VEC_TYPE, MASK_TYPE> (mask, static_cast<DERIVED_VEC_TYPE &>(*this), baseAddr, indices);
-        }
-
-        // SCATTERU
-        UME_FORCE_INLINE SCALAR_TYPE* scatteru (SCALAR_TYPE * baseAddr, uint32_t stride) {
-            UME_EMULATION_WARNING();
-            return SCALAR_EMULATION::scatteru<DERIVED_VEC_TYPE, SCALAR_TYPE> (static_cast<DERIVED_VEC_TYPE &>(*this), baseAddr, stride);
-        }
-
-        // MSCATTERU
-        UME_FORCE_INLINE SCALAR_TYPE* scatteru (MASK_TYPE const & mask, SCALAR_TYPE * baseAddr, uint32_t stride) {
-            UME_EMULATION_WARNING();
-            return SCALAR_EMULATION::scatteru<DERIVED_VEC_TYPE, SCALAR_TYPE, MASK_TYPE> (mask, static_cast<DERIVED_VEC_TYPE &>(*this), baseAddr, stride);
         }
 
         // SCATTERS
@@ -3213,10 +3189,9 @@ namespace SIMD
         ~SIMDVecFloatInterface() {};
         
         SCALAR_FLOAT_TYPE operator[] (SCALAR_UINT_TYPE index) const; // Declaration only! This operator has to be implemented in derived class.
-        UME_FORCE_INLINE DERIVED_VEC_TYPE & insert(uint32_t index, SCALAR_FLOAT_TYPE value); // //Declaration only! This operator has to be implemented in derived class.
+        UME_FORCE_INLINE DERIVED_VEC_TYPE & insert(uint32_t index, SCALAR_FLOAT_TYPE value); // Declaration only! This operator has to be implemented in derived class.
     public:
-       // SCALAR_FLOAT_TYPE operator[] (SCALAR_UINT_TYPE index) const; // Declaration only! This operator has to be implemented in derived class.
-      //  UME_FORCE_INLINE DERIVED_VEC_TYPE & insert(uint32_t index, SCALAR_FLOAT_TYPE value); // Declaration only! This operator has to be implemented in derived class. 
+
         // SUBV
         UME_FORCE_INLINE DERIVED_VEC_TYPE operator- (DERIVED_VEC_TYPE const & b) const {
             return this->sub(b);

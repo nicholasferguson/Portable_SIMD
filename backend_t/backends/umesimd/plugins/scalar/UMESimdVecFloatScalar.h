@@ -32,7 +32,8 @@
 #define UME_SIMD_VEC_FLOAT_H_
 
 #include <type_traits>
-#include "../../UMESimdInterface.h" 
+#include "../../UMESimdInterface.h"
+#include <immintrin.h>
 
 #include "UMESimdMaskScalar.h"
 #include "UMESimdSwizzleScalar.h"
