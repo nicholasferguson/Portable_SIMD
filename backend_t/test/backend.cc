@@ -697,6 +697,23 @@ void RunTestOnType()
 }
 
 template<typename Backend>
+void runTestsVC()
+{
+
+	RunTestOnType<Backend::Real_v>();
+	RunTestOnType<Backend::Float_v>();
+	RunTestOnType<Backend::Double_v>();
+	RunTestOnType<Backend::Int_v>();
+	RunTestOnType<Backend::Int16_v>();
+	RunTestOnType<Backend::Int32_v>();
+	//RunTestOnType<Backend::Int64_v>(); // not allowed with current version of VC
+	RunTestOnType<Backend::UInt_v>();
+	RunTestOnType<Backend::UInt16_v>();
+	RunTestOnType<Backend::UInt32_v>();
+	//RunTestOnType<Backend::UInt64_v>(); // not allowed with current version of VC
+
+}
+template<typename Backend>
 void runTests()
 {
 
@@ -741,7 +758,12 @@ int main(int argc, char *argv[])
 #else 
 	runTests<backend::ScalarT<Real_s> >();
 	runTests<backend::ScalarWrapperT<Real_s> >();
-    runTests<backend::VcScalarT<Real_s> >();
+    runTestsVC<backend::VcScalarT<Real_s> >();
+	runTestsVC<backend::VcSimdArray<1> >();
+	runTestsVC<backend::VcSimdArray<2> >();
+	runTestsVC<backend::VcSimdArray<4> >();
+	runTestsVC<backend::VcSimdArray<8> >();
+	runTestsVC<backend::VcSimdArray<16> >();
 #endif
 
 	return 0;
