@@ -9,6 +9,7 @@
 #include <typeinfo>
 #include <string>
 #include <algorithm>
+#include <stdint.h>
 
 
 using namespace testing;
@@ -736,13 +737,13 @@ void runTestsPrimitives()
 	RunTestOnType<float>();
 	RunTestOnType<double>();
 	RunTestOnType<int>();
-	RunTestOnType<__int16>();
-	RunTestOnType<__int32>();
-	RunTestOnType<__int64>();
+	RunTestOnType<int16_t>();
+	RunTestOnType<int32_t>();
+	RunTestOnType<int64_t>();
 	RunTestOnType<unsigned int>();
-	RunTestOnType<unsigned __int16>();
-	RunTestOnType<unsigned __int32>();
-	RunTestOnType<unsigned __int64>();
+	RunTestOnType<uint16_t>();
+	RunTestOnType<uint32_t>();
+	RunTestOnType<uint64_t>();
 }
 int main(int argc, char *argv[])
 {
