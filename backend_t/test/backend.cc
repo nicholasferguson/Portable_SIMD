@@ -66,25 +66,7 @@ void ConstructorTest_FromRefToScalar()
   EXPECT_TRUE((std::is_constructible<Vector_t, const Scalar_t &>::value));
   std::cout << "PASS" << std::endl;
 }
-static int count = 0;
 
-/*
-template < typename T, typename U>
-typename std::enable_if<TypeTraits<T>::isVector, void>::type
-do_stuff(T& x, U* addr)
-{
-	x.load(addr);
-
-}
-
-template < typename T, typename U>
-typename std::enable_if<!TypeTraits<T>::isVector, void>::type
-do_stuff(T& x, U* addr)
-{
-	x = vecCore::FromPtr<T>(addr);
-
-}
-*/
 template<typename T>
 void ConstructorTest_FromPtrToScalar()
 {
@@ -92,16 +74,8 @@ void ConstructorTest_FromPtrToScalar()
 	using Scalar_t = TypeTraits<T>::ScalarType;
 	using Vector_t = T;
 	std::cout << __FUNCTION__ << "\t" << typeid(T).name() << "\t";
-	if (count == 12)
-		int a = 10;
-	count++;
 
-	size_t size = 0;
-
-
-	std::string name(typeid(Vector_t).name());
-
-	size = vecCore::VectorSize<Vector_t>(); 
+	size_t size = vecCore::VectorSize<Vector_t>();
 
 	Scalar_t* tmp = new Scalar_t[size];
 	Scalar_t *addr =&tmp[0];
@@ -110,9 +84,7 @@ void ConstructorTest_FromPtrToScalar()
 	for (vecCore::UInt_s i = 0; i < size; i++) {
 		tmp[i] = static_cast<Scalar_t>(i);
 	}
-	//vecCore::TypeTraits<Vector_t>::VectorType x;
 
-//	do_stuff<Vector_t, Scalar_t>(x, addr);
 	T x = vecCore::FromPtr<Vector_t>(addr);
 
 	for (vecCore::UInt_s i = 0; i < vecCore::VectorSize<Vector_t>(); i++)
