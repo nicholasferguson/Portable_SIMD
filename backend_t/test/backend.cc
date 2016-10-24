@@ -699,8 +699,7 @@ void RunTestOnType()
 template<typename Backend>
 void runTests()
 {
-	RunTestOnType<int>();
-	RunTestOnType<float>();
+
 	RunTestOnType<Backend::Real_v>();
 	RunTestOnType<Backend::Float_v>();
 	RunTestOnType<Backend::Double_v>();
@@ -714,10 +713,25 @@ void runTests()
 	RunTestOnType<Backend::UInt64_v>();
 
 }
+void runTestsPrimitives()
+{
 
+	RunTestOnType<float>();
+	RunTestOnType<double>();
+	RunTestOnType<int>();
+	RunTestOnType<__int16>();
+	RunTestOnType<__int32>();
+	RunTestOnType<__int64>();
+	RunTestOnType<unsigned int>();
+	RunTestOnType<unsigned __int16>();
+	RunTestOnType<unsigned __int32>();
+	RunTestOnType<unsigned __int64>();
+}
 int main(int argc, char *argv[])
 {
+
 #ifdef VECCORE_ENABLE_UMESIMD
+	runTestsPrimitives();
 	runTests<backend::UMESimd>();
 	runTests<backend::UMESimdArray<1> >();
 	runTests<backend::UMESimdArray<2> >();
