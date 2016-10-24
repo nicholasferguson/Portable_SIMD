@@ -1,5 +1,6 @@
 =====================================================
 	+ Built all code under Windows 10, with Visual Studio 2015, x64
+	  with gtest 1.7.0
 	
 	+ This project is to test a SIMD type API, based on VecCore/VecGeom, that could allow switching 
 	 SIMD wrappers, such as UMESIMD or VC. In this test, I reorganized code.
@@ -10,24 +11,24 @@
 
 	Issues Resolved
 	+ Re-coded VecCore's backend.cc test file.  Removed much of gtest.  Now all tests run OK for both VC and UMESIMD.
+	  Tests were running for VC but failing for UMESIMD.  I made code changes to that tests were also ok with UMESIMD.
 	
-	    + Added a if_enable around Get and Set in implementation.h
+	    + Added an if_enable around Get and Set in implementation.h
 		+ Added to UMESIMD struct TypeTraits IsVector. ( see UMESimdCommon.h )  This works with if_enable.
 		+ Added to UMESIMD struct TypeTraits tSize (UMESimdCommon.h and Scalar.h ). This  fixed VectorSize in implementation.h and deprecated.h 
 		
 	Issues Open
-	+ VecCore's test code in quadratic.cc is a better test.  But some _aligned_free of containers 
+	+ VecCore's test code in quadratic.cc has some _aligned_free of containers that
 	  generate errors.  Need to review why.
 	+ statistics from quadratic.cc are off... in order to compute a mean and sigma, too many time 
-	  intervals are measured.  This impacts reported performance.
+	  intervals are measured.  This impacts reported performance.  Need to redo.
 
 	+ To run test with VC
 	+ 	build backend_t with Preprocessor Macro: VECCORE_ENABLE_VC
 	+ 	All tests were OK.
 	+ To run test with UMESIMD
 	+ 	build backend_t with Preprocessor Macro: VECCORE_ENABLE_UMESIMD
-	+ 	issue with test using UME::SIMD::SIMDVec.  Container sizing is incorrect.  (fixed)	
-		Working on a resolution.
+	+ 	All tests were OK.
 	
 =====================================================
 
