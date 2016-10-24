@@ -2,8 +2,8 @@
 	+ Built all code under Windows 10, with Visual Studio 2015, x64
 	  with gtest 1.7.0
 	  
-	  Current tests were for SIMD's AVX, SSE2 only.
-	  Issues with AVX2. See issues to resolve, below.
+	  Current tests were for SIMD's AVX, AVX2, SSE2 only.
+
 	  
 	  Path to gtest on your machine needs to be added to project file, before you can build.
 	
@@ -27,7 +27,6 @@
 	  generate errors.  Need to review why.
 	+ statistics from quadratic.cc are off... in order to compute a mean and sigma, too many time 
 	  intervals are measured.  This impacts reported performance.  Need to redo.
-	+ __AVX2__ is ok with VC.  All tests PASS.  But __AVX2__ does not compile with UMESimd.
 
 	+ To run test with VC
 	+ 	build backend_t with Preprocessor Macro: VECCORE_ENABLE_VC
