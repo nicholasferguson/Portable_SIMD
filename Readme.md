@@ -1,6 +1,8 @@
 =====================================================
 	+ Built all code under Windows 10, with Visual Studio 2015, x64
 	  with gtest 1.7.0
+	  
+	  Path to gtest on your machine needs to be added to project file, before you can build.
 	
 	+ This project is to test a SIMD type API, based on VecCore/VecGeom, that could allow switching 
 	 SIMD wrappers, such as UMESIMD or VC. In this test, I reorganized code.
