@@ -719,6 +719,11 @@ int main(int argc, char *argv[])
 {
 #ifdef VECCORE_ENABLE_UMESIMD
 	runTests<backend::UMESimd>();
+	runTests<backend::UMESimdArray<1> >();
+	runTests<backend::UMESimdArray<2> >();
+	runTests<backend::UMESimdArray<4> >();
+	runTests<backend::UMESimdArray<8> >();
+	runTests<backend::UMESimdArray<16> >();
 #else 
 	runTests<backend::ScalarT<Real_s> >();
 	runTests<backend::ScalarWrapperT<Real_s> >();
