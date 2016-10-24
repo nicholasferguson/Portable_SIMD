@@ -101,7 +101,7 @@
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;MSVC;_CONSOLE;UMESIMD_MSVC;VECCORE_ENABLE_UMESIMD;__AVX__;VECCORE_SINGLE_PRECISION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>H:\Video.Lectures.UltralF\_Project.SIMD\backend_t;H:\Video.Lectures.UltralF\_Project.SIMD\backend_t\backends;H:\Projects\Third_Party\gtest\gtest-1.7.0\include;H:\Video.Lectures.UltralF\_Project.SIMD\backend_t\backends\vc\include;H:\Video.Lectures.UltralF\_Project.SIMD\backend_t\backends\vc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)backends;H:\Projects\Third_Party\gtest\gtest-1.7.0\include;$(SolutionDir)backends\vc\include;$(SolutionDir)backends\vc</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -573,7 +573,7 @@
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="backends\vc\src\const.cpp" />
-    <ClCompile Include="test\quadratic.cc" />
+    <ClCompile Include="test\backend.cc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

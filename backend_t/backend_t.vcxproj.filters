@@ -1274,7 +1274,7 @@
     <ClCompile Include="backends\vc\src\const.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="test\quadratic.cc">
+    <ClCompile Include="test\backend.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

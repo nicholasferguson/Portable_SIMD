@@ -9,18 +9,11 @@
 #include <typeinfo>
 #include <string>
 #include <algorithm>
-#include <chrono>
+
 
 using namespace testing;
 using namespace vecCore;
 
-double wall_clock() {
-	auto ratio_object = std::chrono::high_resolution_clock::period();
-	double ratio = (double)ratio_object.num / ratio_object.den;
-	//return std::chrono::high_resolution_clock::now().time_since_epoch().count() * ratio;
-	return std::chrono::high_resolution_clock::now()  * ratio;
-
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 
