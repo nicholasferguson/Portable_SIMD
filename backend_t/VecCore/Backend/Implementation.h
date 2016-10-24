@@ -106,13 +106,41 @@ VECCORE_FORCE_INLINE VECCORE_ATT_HOST_DEVICE static void Set(T &v, size_t i, Sca
 
 template <typename T>
 struct IndexingImplementation {
-	VECCORE_FORCE_INLINE VECCORE_ATT_HOST_DEVICE static Scalar<T> Get(const T &v, size_t i) { return *(Begin(v) + i); }
-	VECCORE_FORCE_INLINE VECCORE_ATT_HOST_DEVICE static void Set(T &v, size_t i, Scalar<T> const val)
+	template < typename T>
+	VECCORE_FORCE_INLINE VECCORE_ATT_HOST_DEVICE static
+	typename std::enable_if<TypeTraits<T>::isVector, Scalar<T> >::type
+	Get(const T &v, size_t i) 
+	{ return v[i]; }
+
+	template < typename T>
+	VECCORE_FORCE_INLINE VECCORE_ATT_HOST_DEVICE static
+		typename std::enable_if<!TypeTraits<T>::isVector, Scalar<T> >::type
+		Get(const T &v, size_t i)
+	{
+		return *(Begin(v) + i);
+	}
+
+	template < typename T>
+	VECCORE_FORCE_INLINE VECCORE_ATT_HOST_DEVICE static
+		typename std::enable_if<TypeTraits<T>::isVector, void >::type 
+		Set(T &v, size_t i, Scalar<T> const val)
 	{
 
-			*(Begin(v) + i) = val;
+		//	*(Begin(v) + i) = val;
+			v.insert(i, val);
 
 	}
+
+	template < typename T>
+	VECCORE_FORCE_INLINE VECCORE_ATT_HOST_DEVICE static
+		typename std::enable_if<!TypeTraits<T>::isVector, void >::type
+		Set(T &v, size_t i, Scalar<T> const val)
+	{
+
+		*(Begin(v) + i) = val;
+
+	}
+
 };
 #endif
 

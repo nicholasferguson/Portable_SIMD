@@ -11,7 +11,7 @@ struct TypeTraits {
   using ScalarType = T;
   using MaskType   = Bool_s;
   using IndexType  = Size_s;
-  using VectorType = T;
+  typedef T VectorType;
   static constexpr size_t tsize = 1;
   static constexpr bool isVector = false;
 };

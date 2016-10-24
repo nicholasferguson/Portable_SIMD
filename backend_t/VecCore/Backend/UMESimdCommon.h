@@ -11,7 +11,7 @@ struct TypeTraits<UME::SIMD::SIMDVecMask<N>> {
   using MaskType   = typename UME::SIMD::SIMDVecMask<N>;
   using IndexType  = size_t; 
   using ScalarType = Bool_s;
-  using VectorType = UME::SIMD::SIMDVecMask<N>;
+  typedef UME::SIMD::SIMDVecMask<N> VectorType;
   static constexpr size_t tsize = N;  
   static constexpr bool isVector = true;
 
@@ -22,7 +22,7 @@ struct TypeTraits<UME::SIMD::SIMDVec_f<T, N>> {
   using ScalarType = T;
   using MaskType   = typename UME::SIMD::SIMDVecMask<N>;
   using IndexType  = typename UME::SIMD::SIMDVec_u<uint32_t, N>;
-  using VectorType = typename UME::SIMD::SIMDVec_f<T, N>;
+  typedef UME::SIMD::SIMDVec_f<T, N> VectorType;
   static constexpr size_t tsize = N;
   static constexpr bool isVector = true;
 };
@@ -32,7 +32,7 @@ struct TypeTraits<UME::SIMD::SIMDVec_i<T, N>> {
   using ScalarType = T;
   using MaskType   = typename UME::SIMD::SIMDVecMask<N>;
   using IndexType  = typename UME::SIMD::SIMDVec_u<uint32_t, N>;
-  using VectorType = typename UME::SIMD::SIMDVec_i<T, N>;
+  typedef UME::SIMD::SIMDVec_i<T, N> VectorType;
   static constexpr size_t tsize = N; 
   static constexpr bool isVector = true;
 };
@@ -42,8 +42,8 @@ struct TypeTraits<UME::SIMD::SIMDVec_u<T, N>> {
   using ScalarType = T;
   using MaskType   = typename UME::SIMD::SIMDVecMask<N>;
   using IndexType  = typename UME::SIMD::SIMDVec_u<uint32_t, N>;
-  using VectorType = typename UME::SIMD::SIMDVec_u<T, N>;
-  static constexpr size_t tsize = N;  
+  typedef UME::SIMD::SIMDVec_u<T, N> VectorType;
+   static constexpr size_t tsize = N;  
   static constexpr bool isVector = true;
 };
 
