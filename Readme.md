@@ -10,9 +10,6 @@ Updated Nov 7 2016
 	  gtest 1.7.0 <==== removed....11/7/2016
 	  
 	  Current tests were for SIMD's AVX, AVX2, SSE2 only.
-
-	  
-	  Path to gtest on your machine needs to be added to project file, before you can build.
 	
 	+ This project is to test a SIMD type API, based on VecCore/VecGeom, that could allow switching 
 	 SIMD wrappers, such as UMESIMD or VC. In this test, I reorganized code.
