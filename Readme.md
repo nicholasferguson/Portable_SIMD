@@ -67,7 +67,7 @@ https://github.com/VcDevel/Vc
 =====================================================
 Example of output from backtest.cc 
 
-- |   PASS| Type: class UME::SIMD::SIMDVec_f<float,16>  ConstructorTest_Default
+- "|   PASS| Type: class UME::SIMD::SIMDVec_f<float,16>  ConstructorTest_Default"
 - |   PASS| Type: class UME::SIMD::SIMDVec_f<float,16>  ConstructorTest_Copy
 - |   PASS| Type: class UME::SIMD::SIMDVec_f<float,16>  ConstructorTest_Move
 - |   PASS| Type: class UME::SIMD::SIMDVec_f<float,16>  ConstructorTest_FromScalar
