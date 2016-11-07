@@ -100,7 +100,7 @@
       </PrecompiledHeader>
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;MSVC;_CONSOLE;UMESIMD_MSVC;VECCORE_ENABLE_UMESIMD;__AVX__;VECCORE_SINGLE_PRECISION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;MSVC;_CONSOLE;UMESIMD_MSVC;VECCORE_ENABLE_VC;__AVX__;VECCORE_SINGLE_PRECISION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)backends;H:\Projects\Third_Party\gtest\gtest-1.7.0\include;$(SolutionDir)backends\vc\include;$(SolutionDir)backends\vc</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -154,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="backend\vc\Vector3D.h" />
+    <ClInclude Include="printfInColor.h" />
     <ClInclude Include="VecCore\base\AlignedBase.h" />
     <ClInclude Include="VecCore\base\AlignmentAllocator.h" />
     <ClInclude Include="VecCore\base\Array.h" />

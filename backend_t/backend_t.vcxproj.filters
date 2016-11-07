@@ -1266,6 +1266,9 @@
     <ClInclude Include="VecCore\base\TypeMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="printfInColor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
