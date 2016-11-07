@@ -1,4 +1,10 @@
 =====================================================
+Updated Nov 7 2016
+	Replaced gtest with some code.  gtest lib did not work well with UMESIMD. gtest obsfucated template parameter being passed around.
+	
+	Replaced gtest with two general macros in backtest.cc  massert and massertInt
+	For windows, added file printfInColor.h to print out Pass/Fail with colors as gtest.
+=====================================================
 	+ Built all code under Windows 10, with Visual Studio 2015, x64
 	 Dependencies:
 	  gtest 1.7.0
