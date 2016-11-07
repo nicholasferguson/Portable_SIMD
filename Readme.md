@@ -7,7 +7,7 @@ Updated Nov 7 2016
 =====================================================
 	+ Built all code under Windows 10, with Visual Studio 2015, x64
 	 Dependencies:
-	  gtest 1.7.0
+	  gtest 1.7.0 <==== removed....11/7/2016
 	  
 	  Current tests were for SIMD's AVX, AVX2, SSE2 only.
 
