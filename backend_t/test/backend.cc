@@ -4,7 +4,6 @@
 #include <VecCore/Common.h>
 #include "VecCore/base/Global.h"
 #include <Vc/Vc>
-#include <gtest/gtest.h>
 #include <type_traits>
 #include <typeinfo>
 #include <string>
