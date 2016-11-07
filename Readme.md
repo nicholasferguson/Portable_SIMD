@@ -137,4 +137,3 @@ Example of output from backtest.cc
 - |   PASS| Type: class UME::SIMD::SIMDVec_f<float,16>  VectorMaskTest_MaskAssign
 - |   PASS| Type: class UME::SIMD::SIMDVec_f<float,16>  VectorMaskTest_MaskAssign2
 - |   PASS| Type: class UME::SIMD::SIMDVec_f<float,16>  VectorMaskTest_Blend
-=====================================================
