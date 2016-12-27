@@ -25,9 +25,9 @@
 	
 #Library folder's structure
 
-* `backend_t\VecCore\Backend` - This has logic to handle various SIMD libraries
-* `backend_t\backends\umesimd` -  umesimd library
-* `backend_t\backends\vc` - 	VC library	
+* `backend_t\VecCore\Backend` - This has logic to handle various SIMD wrapper libraries
+* `backend_t\backends\umesimd` -  umesimd - SIMD wrapper library
+* `backend_t\backends\vc` - 	VC - SIMD wrapper library
 * `backend_t\test` - These files test generic SIMD API. Current tests inlude  AVX, AVX2, SSE2. 
 * `backend_t\` - This has VC2015 solution file)
 
