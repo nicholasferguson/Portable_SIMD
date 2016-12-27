@@ -16,11 +16,11 @@
 * Build using backend.cc as a default test application.
 	+ To run test of an application using `VC SIMD wrapper library`
 	+ 	build backend_t with Preprocessor Macro: `VECCORE_ENABLE_VC`
-	+   Add as a compiler macro:  `__AVX__`
+	+   Add as a Preprocessor Macro:  `__AVX__`
 	+ 	All tests were OK.
 	+ To run test of an application using `UMESIMD SIMD wrapper library`
 	+ 	build backend_t with Preprocessor Macro: `VECCORE_ENABLE_UMESIMD`
-	+   Add as a compiler macro:  `__AVX__`
+	+   Add as a Preprocessor Macro:  `__AVX__`
 	+ 	All tests were OK.	
 	
 #Library folder's structure
