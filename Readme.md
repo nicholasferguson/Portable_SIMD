@@ -8,8 +8,8 @@
 #Questions to answer
 
 * With metaprogramming, can an application:
-	+ switch to a particular SIMD wrapper, with minimal re-coding.
-	+ and use 3rd Party SIMD wrapper libraries.
+	+ switch to a particular 3rd Party SIMD wrapper, with minimal re-coding.
+	+ and with minimal recoding switch to a different SIMD: SSEn, AVXn
 
 #Tested Windows build instructions
 
