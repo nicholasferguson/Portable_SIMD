@@ -7,7 +7,10 @@
 	
 #Questions to answer
 
-	+ With metaprogramming, can an application switch to a particular SIMD wrapper, with minimal re-coding, 
+* With metaprogramming, can an application:
+	+ switch to a particular SIMD wrapper, with minimal re-coding.
+	+ and use 3rd Party SIMD wrapper libraries.
+
 
 #Library folder's structure
 
@@ -16,7 +19,25 @@
 * `backend_t\backends\vc` - 	VC library	
 * `backend_t\test` - These files test generic SIMD API. Current tests inlude  AVX, AVX2, SSE2. 
 * `backend_t\` - This has VC2015 solution file)
-	
+
+#Windows build instructions
+
+	+ To run test with VC
+	+ 	build backend_t with Preprocessor Macro: VECCORE_ENABLE_VC
+	+   Add as a compiler macro:  __AVX__
+	+ 	All tests were OK.
+	+ To run test with UMESIMD
+	+ 	build backend_t with Preprocessor Macro: VECCORE_ENABLE_UMESIMD
+	+   Add as a compiler macro:  __AVX__
+	+ 	All tests were OK.	
+
+#Open Issues
+
+	+ VecCore's test code in quadratic.cc has some _aligned_free of containers that
+	  generate errors.  Need to review why.
+	+ statistics from quadratic.cc are off... in order to compute a mean and sigma, too many time 
+	  intervals are measured.  This impacts reported performance.  Need to redo.	
+	  
 #Updates
 
 * `Nov 7 2016`
@@ -28,22 +49,6 @@
 	+ Added to UMESIMD struct TypeTraits IsVector. ( see UMESimdCommon.h )  This works with if_enable.
 	+ Added to UMESIMD struct TypeTraits tSize (UMESimdCommon.h and Scalar.h ). This  fixed VectorSize in implementation.h and deprecated.h 
 		
-#Open Issues
-
-	+ VecCore's test code in quadratic.cc has some _aligned_free of containers that
-	  generate errors.  Need to review why.
-	+ statistics from quadratic.cc are off... in order to compute a mean and sigma, too many time 
-	  intervals are measured.  This impacts reported performance.  Need to redo.
-
-#Windows build instructions
-
-	+ To run test with VC
-	+ 	build backend_t with Preprocessor Macro: VECCORE_ENABLE_VC
-	+ 	All tests were OK.
-	+ To run test with UMESIMD
-	+ 	build backend_t with Preprocessor Macro: VECCORE_ENABLE_UMESIMD
-	+ 	All tests were OK.
-	
 #Links
 
 VecGeom/VecCore
