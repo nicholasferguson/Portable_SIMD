@@ -11,7 +11,17 @@
 	+ switch to a particular SIMD wrapper, with minimal re-coding.
 	+ and use 3rd Party SIMD wrapper libraries.
 
+#Tested Windows build instructions
 
+	+ To run test of an application using VC SIMD wrapper library
+	+ 	build backend_t with Preprocessor Macro: VECCORE_ENABLE_VC
+	+   Add as a compiler macro:  __AVX__
+	+ 	All tests were OK.
+	+ To run test of an application using UMESIMD SIMD wrapper library
+	+ 	build backend_t with Preprocessor Macro: VECCORE_ENABLE_UMESIMD
+	+   Add as a compiler macro:  __AVX__
+	+ 	All tests were OK.	
+	
 #Library folder's structure
 
 * `backend_t\VecCore\Backend` - This has logic to handle various SIMD libraries
@@ -20,16 +30,7 @@
 * `backend_t\test` - These files test generic SIMD API. Current tests inlude  AVX, AVX2, SSE2. 
 * `backend_t\` - This has VC2015 solution file)
 
-#Windows build instructions
 
-	+ To run test with VC
-	+ 	build backend_t with Preprocessor Macro: VECCORE_ENABLE_VC
-	+   Add as a compiler macro:  __AVX__
-	+ 	All tests were OK.
-	+ To run test with UMESIMD
-	+ 	build backend_t with Preprocessor Macro: VECCORE_ENABLE_UMESIMD
-	+   Add as a compiler macro:  __AVX__
-	+ 	All tests were OK.	
 
 #Open Issues
 
