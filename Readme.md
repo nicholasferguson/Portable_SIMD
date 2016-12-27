@@ -2,7 +2,7 @@
 
 	+ I abstracted code and added some code, in this project,
 	 to test a  generic SIMD API, based on VecCore/VecGeom.  I made it Windows oriented.
-	+ As a generic SIMD API, it allows C++ apps to switch from using SSEn to AVXn without any application code changes.  Switches are done with preprocessor macros.
+	+ As a generic SIMD API, it allows C++ apps to switch from using SSEn to AVXn without any application code changes.  Switches are done with preprocessor macros, or via config files.
 	+ This generic API has code to use SIMD wrapper libraries of UMESIMD and VC 
 	
 #Questions to answer
