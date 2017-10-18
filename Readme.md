@@ -75,7 +75,7 @@ https://github.com/VcDevel/Vc
 - AVX2
 - AVX512 ( Xeon Phi ) (Many Integrated Core (MIC) )  
 
-/////////Results of tests in backend.cc
+/////////Results of tests in backend.cc ("VECCORE_ENABLE_VC")
 + |	   PASS| Type: float         ConstructorTest_Default
 + |    PASS| Type: float         ConstructorTest_Copy
 + |    PASS| Type: float         ConstructorTest_Move
