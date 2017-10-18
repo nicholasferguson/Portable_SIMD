@@ -76,6 +76,8 @@ https://github.com/VcDevel/Vc
 - AVX512 ( Xeon Phi ) (Many Integrated Core (MIC) )  
 
 #Test Results for UMESIMD and VC
++ UMESIMD has passed 2660 tests. 
++ VC has passed 2800 tests.
 
 - Results of tests in backend.cc ("VECCORE_ENABLE_VC")
 + |	   PASS| Type: float         ConstructorTest_Default
@@ -2879,7 +2881,7 @@ VectorMaskTest_Blend
 + |    PASS| Type: class Vc_1::SimdArray<unsigned int,16,class Vc_1::Vector<unsigned int,struct Vc_1::VectorAbi::Sse>,4>         VectorMaskTest_MaskAssign2
 + |    PASS| Type: class Vc_1::SimdArray<unsigned int,16,class Vc_1::Vector<unsigned int,struct Vc_1::VectorAbi::Sse>,4>         VectorMaskTest_Blend
 
-- Results of tests in backend.cc ("VECCORE_ENABLE_UMESIMD")
+- Results of tests in backend.cc ("VECCORE_ENABLE_UMESIMD") 
 + |    PASS| Type: float         ConstructorTest_Default
 + |    PASS| Type: float         ConstructorTest_Copy
 + |    PASS| Type: float         ConstructorTest_Move
